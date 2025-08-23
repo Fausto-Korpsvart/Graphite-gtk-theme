@@ -1,4 +1,3 @@
-
 //
 // avatar
 //
@@ -12,22 +11,21 @@ avatar {
   // There are 8 different colors for avtars in the list if you change the number of them you
   // need to update the NUMBER_OF_COLORS in src/adw-avatar.c.
   // The 2D list has this form: ((font-color, gradient-top-color, gradient-bottom-color)).
-  $avatarcolorlist: (
-   (#cfe1f5, #83b6ec, #337fdc), // blue
-   (#caeaf2, #7ad9f1, #0f9ac8), // cyan
-   (#cef8d8, #8de6b1, #29ae74), // green
-   (#e6f9d7, #b5e98a, #6ab85b), // lime
-   (#f9f4e1, #f8e359, #d29d09), // yellow
-   (#ffead1, #ffcb62, #d68400), // gold
-   (#ffe5c5, #ffa95a, #ed5b00), // orange
-   (#f8d2ce, #f78773, #e62d42), // raspberry
-   (#fac7de, #e973ab, #e33b6a), // magenta
-   (#e7c2e8, #cb78d4, #9945b5), // purple
-   (#d5d2f5, #9e91e8, #7a59ca), // violet
-   (#f2eade, #e3cf9c, #b08952), // beige
-   (#e5d6ca, #be916d, #785336), // brown
-   (#d8d7d3, #c0bfbc, #6e6d71), // gray
-  );
+  $avatarcolorlist: ((#cfe1f5, #83b6ec, #337fdc), // blue
+      (#caeaf2, #7ad9f1, #0f9ac8), // cyan
+      (#cef8d8, #8de6b1, #29ae74), // green
+      (#e6f9d7, #b5e98a, #6ab85b), // lime
+      (#f9f4e1, #f8e359, #d29d09), // yellow
+      (#ffead1, #ffcb62, #d68400), // gold
+      (#ffe5c5, #ffa95a, #ed5b00), // orange
+      (#f8d2ce, #f78773, #e62d42), // raspberry
+      (#fac7de, #e973ab, #e33b6a), // magenta
+      (#e7c2e8, #cb78d4, #9945b5), // purple
+      (#d5d2f5, #9e91e8, #7a59ca), // violet
+      (#f2eade, #e3cf9c, #b08952), // beige
+      (#e5d6ca, #be916d, #785336), // brown
+      (#d8d7d3, #c0bfbc, #6e6d71), // gray
+    );
 
   @for $i from 1 through length($avatarcolorlist) {
     &.color#{$i} {
@@ -37,9 +35,13 @@ avatar {
     }
   }
 
-  &.contrasted { color: white; }
+  &.contrasted {
+    color: white;
+  }
 
-  &.image { background: none; }
+  &.image {
+    background: none;
+  }
 }
 
 //
@@ -169,15 +171,22 @@ toast {
   color: on($osd);
   border: none;
 
-  &:dir(ltr) { padding-left: $space-size * 2; }
-  &:dir(rtl) { padding-right: $space-size * 2; }
+  &:dir(ltr) {
+    padding-left: $space-size * 2;
+  }
+
+  &:dir(rtl) {
+    padding-right: $space-size * 2;
+  }
 
   > label {
     margin: 0 $space-size;
   }
 
   button, button.text-button,
-  button.circular.flat { @extend %button-on-dark; }
+  button.circular.flat {
+    @extend %button-on-dark;
+  }
 }
 
 //
@@ -192,10 +201,15 @@ viewswitcher {
       background-color: $primary;
       color: on($primary);
 
-      &:backdrop { color: on($primary, disabled); }
+      &:backdrop {
+        color: on($primary, disabled);
+      }
 
       indicatorbin.needs-attention > indicator {
-        > label { color: $primary; }
+        > label {
+          color: $primary;
+        }
+
         background-color: on($primary);
       }
     }
@@ -208,8 +222,8 @@ viewswitcher {
   }
 
   headerbar &.narrow button.toggle {
-    border-radius: if($topbar == 'dark' and $theme == 'default' and $variant == 'light', $corner-radius, 0 0 $window-radius $window-radius);
-    margin: if($topbar == 'dark' and $theme == 'default' and $variant == 'light', 2px 0, 0);
+    border-radius: if($topbar =='dark' and $theme =='default' and $variant =='light', $corner-radius, 0 0 $window-radius $window-radius);
+    margin: if($topbar =='dark' and $theme =='default' and $variant =='light', 2px 0, 0);
     min-width: 120px;
     padding: 0;
     background-color: transparent;
@@ -220,7 +234,7 @@ viewswitcher {
 
       indicator {
         background: on($titlebar-primary);
-    
+
         > label {
           color: $titlebar-primary;
         }
@@ -231,7 +245,9 @@ viewswitcher {
       }
     }
 
-    &:focus { box-shadow: none; }
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   button.toggle {
@@ -331,14 +347,18 @@ indicatorbin {
   &.needs-attention > indicator {
     background-color: $primary;
 
-    > label { color: on($primary); }
+    > label {
+      color: on($primary);
+    }
   }
 }
 
 
 // ThemeSelector
 themeselector, // Gnome text editor
-panelthemeselector { // Gnome builder
+
+panelthemeselector {
+  // Gnome builder
   margin: $space-size * 1.5;
 
   checkbutton {
@@ -384,7 +404,7 @@ panelthemeselector { // Gnome builder
       &:checked {
         -gtk-icon-size: 16px;
         -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/check-symbolic.svg")),
-        -gtk-recolor(url("assets/scalable/check-symbolic@2.svg")));
+            -gtk-recolor(url("assets/scalable/check-symbolic@2.svg")));
 
         &, &:hover, &:active {
           color: on($primary);
@@ -396,7 +416,8 @@ panelthemeselector { // Gnome builder
   }
 }
 
-popover themeswitcher { // Gnome console
+popover themeswitcher {
+  // Gnome console
   padding: $space-size;
 
   .check {
@@ -459,7 +480,7 @@ popover themeswitcher { // Gnome console
 // AdwDialog
 //
 
- floating-sheet {
+floating-sheet {
   > dimming {
     background-color: rgba(black, 0.35);
   }
@@ -468,9 +489,11 @@ popover themeswitcher { // Gnome console
     border-radius: $window-radius;
     outline: none;
 
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       box-shadow: $shadow-z16;
-    } @else {
+    }
+
+    @else {
       box-shadow: $shadow-z16, 0 0 0 2px $primary;
     }
   }
@@ -511,5 +534,231 @@ dialog-host > dialog.osd:not(progressbar):not(button):not(menubutton):not(splitb
 
   sheet {
     @extend %osd;
+  }
+}
+
+//
+// AdwToggleGroup
+//
+
+toggle-group {
+  background: $button;
+  border-radius: $corner-radius + $space-size / 2;
+  padding: $space-size / 2;
+
+  &:disabled {
+    background-color: $fill;
+  }
+
+  > toggle {
+    border-radius: $corner-radius;
+    font-weight: bold;
+    min-width: $medium-size;
+    min-height: $medium-size - $space-size;
+    color: $text-secondary;
+
+    &.image-button > image:disabled {
+      filter: opacity(0.5);
+    }
+
+    &.text-button {
+      min-width: 18px + $space-size;
+      padding-left: 11px - $space-size / 2;
+      padding-right: 11px - $space-size / 2;
+
+      > label:disabled {
+        filter: opacity(0.5);
+      }
+    }
+
+    &.image-text-button {
+      min-width: 10px + $space-size;
+      padding-left: 11px - $space-size / 2;
+      padding-right: 11px - $space-size / 2;
+
+      > buttoncontent > box > label {
+        padding: 0;
+      }
+
+      > buttoncontent > box > image:disabled,
+      > buttoncontent > box > label:disabled {
+        filter: opacity(0.5);
+      }
+    }
+
+    &:hover {
+      background-color: $overlay-hover;
+      color: $text;
+    }
+
+    &:active, &.keyboard-activating {
+      background-color: $overlay-active;
+      color: $text;
+    }
+
+    &:checked {
+      background-color: $primary;
+      color: on($primary);
+      box-shadow: none;
+
+      &:disabled {
+        background-color: rgba($primary, 0.5);
+      }
+    }
+  }
+
+  &.osd,
+  .osd & {
+    background: $osd;
+    color: on($osd);
+    border-radius: $corner-radius + $space-size / 2;
+    box-shadow: none;
+    padding: $space-size / 2;
+    margin: 0;
+
+    > toggle {
+      border-radius: $corner-radius;
+
+      &, &:hover, &:active, &.keyboard-activating {
+        box-shadow: none;
+        color: on($osd);
+      }
+
+      &:checked {
+        background-color: white;
+        color: rgba(black, 0.8);
+        box-shadow: none;
+      }
+
+      &:disabled {
+        background-color: transparent;
+        color: on($osd, disabled);
+      }
+    }
+
+    &:not(.flat) > toggle:checked {
+      background-color: white;
+      color: rgba(black, 0.8);
+      box-shadow: none;
+
+      &:disabled {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &.vertical > toggle:not(.text-button):not(.image-text-button) {
+    min-width: $medium-size - $space-size;
+  }
+
+  > separator {
+    transition: opacity 200ms $ease-out;
+
+    &.horizontal {
+      margin: $space-size / 2 1px;
+    }
+
+    &.vertical {
+      margin: 1px $space-size / 2;
+    }
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    &:disabled {
+      filter: Opacity(0.35);
+    }
+  }
+
+  &.round {
+    border-radius: $circular-radius;
+
+    toggle {
+      border-radius: $circular-radius;
+
+      &.text-button,
+      &.image-text-button {
+        padding-left: 15px - $space-size / 2;
+        padding-right: 15px - $space-size / 2;
+      }
+    }
+
+    separator {
+      &.horizontal {
+        margin: $space-size 1px;
+      }
+
+      &.vertical {
+        margin: 1px $space-size;
+      }
+    }
+  }
+
+  &.flat {
+    background: none;
+    color: inherit;
+    box-shadow: none;
+
+    > toggle {
+      &:checked {
+        background-color: $overlay-checked;
+        color: inherit;
+        box-shadow: none;
+
+        &:hover {
+          background-color: $overlay-focus-hover;
+        }
+
+        &:active, &.keyboard-activating {
+          background-color: $overlay-active;
+        }
+
+        &:disabled {
+          background-color: $overlay-normal;
+        }
+      }
+    }
+
+    > separator {
+      background: none;
+    }
+  }
+}
+
+/*************************
+ * AdwInlineViewSwitcher *
+ *************************/
+
+inline-view-switcher > toggle-group {
+  &.icons > toggle {
+    min-width: $medium-size;
+  }
+
+  &.labels > toggle {
+    min-width: 18px + $space-size;
+
+    > widget > indicatorbin {
+      padding-left: 11px - $space-size / 2;
+      padding-right: 11px - $space-size / 2;
+
+      > label {
+        padding: 0 6px;
+      }
+
+      > indicator, > mask {
+        transform: translateY(2px);
+      }
+    }
+  }
+
+  &.both > toggle {
+    min-width: 10px + $space-size;
+
+    > widget > box {
+      padding-left: 15px - $space-size / 2;
+      padding-right: 15px - $space-size / 2;
+      border-spacing: 6px;
+    }
   }
 }
