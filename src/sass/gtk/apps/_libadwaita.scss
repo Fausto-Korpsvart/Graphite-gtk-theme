@@ -545,6 +545,7 @@ toggle-group {
   background: $button;
   border-radius: $corner-radius + $space-size / 2;
   padding: $space-size / 2;
+  border-spacing: 0;
 
   &:disabled {
     background-color: $fill;
@@ -734,6 +735,8 @@ inline-view-switcher > toggle-group {
   &.icons > toggle {
     min-width: $medium-size;
   }
+
+  &.labels { border-spacing: 0; }
 
   &.labels > toggle {
     min-width: 18px + $space-size;

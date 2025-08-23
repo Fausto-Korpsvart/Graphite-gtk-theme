@@ -1,4 +1,3 @@
-
 /***************
  * Base States *
  ***************/
@@ -24,7 +23,9 @@ arrow:disabled,
 scrollbar:disabled,
 check:disabled,
 radio:disabled,
-treeview.expander:disabled { -gtk-icon-filter: opacity(0.5); }
+treeview.expander:disabled {
+  -gtk-icon-filter: opacity(0.5);
+}
 
 %view, .view {
   // background-color: $base;
@@ -32,7 +33,9 @@ treeview.expander:disabled { -gtk-icon-filter: opacity(0.5); }
 
   // &:selected:hover { box-shadow: inset 0 0 0 9999px rgba($primary, 0.08); }
 
-  &:disabled { color: $text-disabled; }
+  &:disabled {
+    color: $text-disabled;
+  }
 
   &:selected {
     @extend %selected_items_color;
@@ -54,11 +57,16 @@ textview {
   }
 }
 
-text > selection { @extend %selected_items_primary; }
+text > selection {
+  @extend %selected_items_primary;
+}
 
 iconview {
   @extend %view;
-  &:hover, &:selected { border-radius: $corner-radius / 2; }
+
+  &:hover, &:selected {
+    border-radius: $corner-radius / 2;
+  }
 }
 
 rubberband {
@@ -67,13 +75,17 @@ rubberband {
 }
 
 flowbox {
-  > rubberband { @extend rubberband; }
+  > rubberband {
+    @extend rubberband;
+  }
 
   > flowboxchild {
     padding: 4px;
     border-radius: $corner-radius;
 
-    &:selected { @extend %selected_items_color; }
+    &:selected {
+      @extend %selected_items_color;
+    }
   }
 }
 
@@ -84,7 +96,9 @@ flowbox {
 }
 
 gridview {
-  > rubberband { @extend rubberband; }
+  > rubberband {
+    @extend rubberband;
+  }
 
   > child {
     padding: 3px;
@@ -95,7 +109,8 @@ gridview {
       @extend %selected_items;
     }
 
-    box { //cells
+    box {
+      //cells
       border-spacing: 8px; //label separation
       margin: 12px;
     }
@@ -113,7 +128,9 @@ label {
     color: $text-secondary;
   }
 
-  > selection { @extend %selected_items_primary; }
+  > selection {
+    @extend %selected_items_primary;
+  }
 
   &:disabled {
     color: $text-disabled;
@@ -124,7 +141,9 @@ label {
 
     headerbar &,
     tab &,
-    button & { color: inherit; }
+    button & {
+      color: inherit;
+    }
   }
 
   &.osd {
@@ -159,7 +178,9 @@ window.assistant {
     color: $text-disabled;
     font-weight: 500;
 
-    &.highlight { color: $text; }
+    &.highlight {
+      color: $text;
+    }
   }
 }
 
@@ -177,7 +198,9 @@ window.assistant {
   margin: $space-size;
   box-shadow: $shadow-z4;
 
-  &.circular { border-radius: $circular-radius; }
+  &.circular {
+    border-radius: $circular-radius;
+  }
 }
 
 
@@ -185,7 +208,9 @@ window.assistant {
  * Spinner Animation *
  *********************/
 @keyframes spin {
-  to { transform: rotate(1turn); }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 spinner {
@@ -197,7 +222,9 @@ spinner {
     opacity: 1;
     animation: spin 1s linear infinite;
 
-    &:disabled { opacity: 0.5; }
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -214,8 +241,8 @@ spinner {
   }
 
   &-2 {
-     font-weight: 800;
-     font-size: 15pt;
+    font-weight: 800;
+    font-size: 15pt;
   }
 
   &-3 {
@@ -262,13 +289,21 @@ entry {
 
     @include entry(normal);
 
-    &:focus-within { @include entry(checked); }
+    &:focus-within {
+      @include entry(checked);
+    }
 
-    &:drop(active) { @include entry(hover); }
+    &:drop(active) {
+      @include entry(hover);
+    }
 
-    &:disabled { @include entry(disabled); }
+    &:disabled {
+      @include entry(disabled);
+    }
 
-    &.search { border-radius: $circular-radius; }
+    &.search {
+      border-radius: $circular-radius;
+    }
 
     &.flat {
       min-height: 0;
@@ -277,12 +312,17 @@ entry {
       background-color: transparent;
     }
 
-    image { // icons inside the entry
+    image {
+      // icons inside the entry
       color: $text-secondary;
 
-      &:hover, &:active { color: $text; }
+      &:hover, &:active {
+        color: $text;
+      }
 
-      &:disabled { color: $text-secondary-disabled; }
+      &:disabled {
+        color: $text-secondary-disabled;
+      }
 
       &.left {
         margin-left: ($medium-size - 16px) / 2 - 8px;
@@ -296,15 +336,19 @@ entry {
     }
 
     undershoot {
-      &.left { @include undershoot(left); }
+      &.left {
+        @include undershoot(left);
+      }
 
-      &.right { @include undershoot(right); }
+      &.right {
+        @include undershoot(right);
+      }
     }
 
     // entry error and warning style
     @each $e_type, $e_color in (error, $error),
-                               (warning, $warning),
-                               (success, $success) {
+    (warning, $warning),
+    (success, $success) {
       &.#{$e_type} {
         @include entry(normal, $e_color);
         background-color: $overlay-normal;
@@ -312,7 +356,9 @@ entry {
         &, &:hover, &:focus-within {
           color: $e_color;
 
-          image { color: $e_color; }
+          image {
+            color: $e_color;
+          }
         }
 
         selection {
@@ -320,14 +366,18 @@ entry {
           background-color: $e_color;
         }
 
-        &:hover { @include entry(hover, $e_color); }
+        &:hover {
+          @include entry(hover, $e_color);
+        }
 
         &:focus-within {
           @include entry(checked, $e_color);
           background-color: $overlay-normal;
         }
 
-        &:disabled { @include entry(disabled, $e_color); }
+        &:disabled {
+          @include entry(disabled, $e_color);
+        }
       }
     }
   }
@@ -339,11 +389,15 @@ entry {
     background-color: transparent;
   }
 
-   // linked entries
-  .linked:not(.vertical) > & { @extend %linked; }
+  // linked entries
+  .linked:not(.vertical) > & {
+    @extend %linked;
+  }
 
   // Vertically linked entries
-  .linked.vertical > & { @extend %linked-vertical; }
+  .linked.vertical > & {
+    @extend %linked-vertical;
+  }
 }
 
 %entry_raised {
@@ -351,29 +405,43 @@ entry {
 
   @include entry(raised-normal);
 
-  &:focus-within { @include entry(raised-focus); }
+  &:focus-within {
+    @include entry(raised-focus);
+  }
 
-  &:drop(active) { @include entry(raised-hover); }
+  &:drop(active) {
+    @include entry(raised-hover);
+  }
 
-  &:disabled { @include entry(raised-disabled); }
+  &:disabled {
+    @include entry(raised-disabled);
+  }
 
   // entry error and warning style
   @each $e_type, $e_color in (error, $error),
-                             (warning, $warning),
-                             (success, $success) {
+  (warning, $warning),
+  (success, $success) {
     &.#{$e_type} {
       @include entry(raised-normal, $e_color);
 
-      &:focus-within { @include entry(raised-focus, $e_color); }
+      &:focus-within {
+        @include entry(raised-focus, $e_color);
+      }
 
-      &:disabled { @include entry(raised-disabled, $e_color); }
+      &:disabled {
+        @include entry(raised-disabled, $e_color);
+      }
 
       image {
         color: on($e_color, secondary);
 
-        &:hover, &:active { color: on($e_color); }
+        &:hover, &:active {
+          color: on($e_color);
+        }
 
-        &:disabled { color: on($e_color, disabled); }
+        &:disabled {
+          color: on($e_color, disabled);
+        }
       }
     }
   }
@@ -397,7 +465,9 @@ treeview entry {
   background-color: $track-disabled;
   color: $text;
 
-  &:hover { background-image: image($overlay-hover); }
+  &:hover {
+    background-image: image($overlay-hover);
+  }
 
   // side margins: compensate the entry padding with a negative margin
   // then the negative margin itself
@@ -420,7 +490,9 @@ treeview entry {
     box-shadow: none;
     background-color: transparent;
 
-    &:not(:hover):not(:active) { color: $text-secondary; }
+    &:not(:hover):not(:active) {
+      color: $text-secondary;
+    }
   }
 }
 
@@ -434,34 +506,61 @@ editablelabel > stack > text {
  ***********/
 // stuff for .needs-attention
 @keyframes needs-attention {
-  from { background-image: radial-gradient(farthest-side, $primary 0%, transparentize($primary, 1) 0%); }
-  to { background-image: radial-gradient(farthest-side, $primary 95%, transparentize($primary, 1)); }
+  from {
+    background-image: radial-gradient(farthest-side, $primary 0%, transparentize($primary, 1) 0%);
+  }
+
+  to {
+    background-image: radial-gradient(farthest-side, $primary 95%, transparentize($primary, 1));
+  }
 }
 
 %button-on-dark {
   color: on(dark, secondary);
 
-  &:focus, &:hover, &:active, &:checked { color: on(dark); }
-  &:disabled { color: on(dark, secondary-disabled); }
-  &:checked:disabled { color: on(dark, disabled); }
+  &:focus, &:hover, &:active, &:checked {
+    color: on(dark);
+  }
+
+  &:disabled {
+    color: on(dark, secondary-disabled);
+  }
+
+  &:checked:disabled {
+    color: on(dark, disabled);
+  }
 }
 
 %button-basic {
   @include button(normal);
 
-  &:focus { @include button(focus); }
+  &:focus {
+    @include button(focus);
+  }
 
-  &:hover { @include button(hover); }
+  &:hover {
+    @include button(hover);
+  }
 
-  &:active { @include button(active); }
+  &:active {
+    @include button(active);
+  }
 
-  &:disabled { @include button(disabled); }
+  &:disabled {
+    @include button(disabled);
+  }
 
-  &:checked { @include button(checked); }
+  &:checked {
+    @include button(checked);
+  }
 
-  &:checked:hover { @include button(checked-hover); }
+  &:checked:hover {
+    @include button(checked-hover);
+  }
 
-  &:checked:disabled { @include button(checked-disabled); }
+  &:checked:disabled {
+    @include button(checked-disabled);
+  }
 }
 
 button {
@@ -472,24 +571,38 @@ button {
   font-weight: 500;
   @extend %button-basic;
 
-  &:drop(active) { @include button(hover); }
+  &:drop(active) {
+    @include button(hover);
+  }
 
   @at-root %button-flat, &.flat {
     @at-root %button-flat-simple, & {
       @include button(flat-normal);
 
-      &:focus { @include button(flat-focus); }
+      &:focus {
+        @include button(flat-focus);
+      }
 
-      &:hover { @include button(flat-hover); }
+      &:hover {
+        @include button(flat-hover);
+      }
 
-      &:active { @include button(flat-active); }
+      &:active {
+        @include button(flat-active);
+      }
 
-      &:disabled { @include button(flat-disabled); }
+      &:disabled {
+        @include button(flat-disabled);
+      }
     }
 
-    &:checked, &:checked:hover { @include button(flat-checked); }
+    &:checked, &:checked:hover {
+      @include button(flat-checked);
+    }
 
-    &:checked:disabled { @include button(flat-checked-disabled); }
+    &:checked:disabled {
+      @include button(flat-checked-disabled);
+    }
   }
 
   &.text-button {
@@ -523,18 +636,28 @@ button {
     border-radius: $corner-radius;
 
     label {
-      &:first-child { margin-left: 16px - ($medium-size - 24px) / 2; }
+      &:first-child {
+        margin-left: 16px - ($medium-size - 24px) / 2;
+      }
 
-      &:last-child { margin-right: 16px - ($medium-size - 24px) / 2; }
+      &:last-child {
+        margin-right: 16px - ($medium-size - 24px) / 2;
+      }
     }
 
     &.flat label {
-      &:first-child { margin-left: 12px - ($medium-size - 24px) / 2; }
+      &:first-child {
+        margin-left: 12px - ($medium-size - 24px) / 2;
+      }
 
-      &:last-child { margin-right: 12px - ($medium-size - 24px) / 2; }
+      &:last-child {
+        margin-right: 12px - ($medium-size - 24px) / 2;
+      }
     }
 
-    image:not(:only-child) { margin: 0 (24px - 16px) / 2; }
+    image:not(:only-child) {
+      margin: 0 (24px - 16px) / 2;
+    }
   }
 
   .linked:not(.vertical) > &,
@@ -549,13 +672,16 @@ button {
 
   .linked:not(.vertical) > &.flat,
   .linked.vertical > &.flat {
-    &:not(:only-child) { // specificity bump
+    &:not(:only-child) {
+      // specificity bump
       border-radius: $corner-radius;
 
       // &.image-button:not(.text-button) { border-radius: $circular-radius; }
     }
 
-    &:focus { box-shadow: inset 0 0 0 9999px $overlay-focus; }
+    &:focus {
+      box-shadow: inset 0 0 0 9999px $overlay-focus;
+    }
   }
 
   // big standalone buttons like in Documents pager
@@ -575,39 +701,53 @@ button {
       color: on($osd);
     }
 
-    &.image-button { padding: ($medium-size - 24px) / 2; }
+    &.image-button {
+      padding: ($medium-size - 24px) / 2;
+    }
 
-    &:disabled { opacity: 0; }
+    &:disabled {
+      opacity: 0;
+    }
   }
 
   // Suggested and Destructive Action buttons
   @each $b_type, $b_color in (suggested-action, $suggested),
-                             (destructive-action, $destructive) {
+  (destructive-action, $destructive) {
     &.#{$b_type} {
       background-color: $b_color;
       color: on($b_color);
 
-      &:disabled { @include button(disabled); }
+      &:disabled {
+        @include button(disabled);
+      }
 
       &:hover {
         box-shadow: none;
       }
 
-      &:checked { background-color: mix(on($b_color), $b_color, percentage(0.3)); }
+      &:checked {
+        background-color: mix(on($b_color), $b_color, percentage(0.3));
+      }
 
       &:checked:hover {
         box-shadow: none;
       }
 
-      &:focus { box-shadow: none; }
+      &:focus {
+        box-shadow: none;
+      }
 
       &.flat {
         background-color: transparent;
         color: $b_color;
 
-        &:disabled { @include button(flat-disabled); }
+        &:disabled {
+          @include button(flat-disabled);
+        }
 
-        &:checked { background-color: rgba($b_color, 0.3); }
+        &:checked {
+          background-color: rgba($b_color, 0.3);
+        }
       }
     }
   }
@@ -645,11 +785,15 @@ button {
         @include button(checked-hover);
       }
 
-      &:disabled { @include button(checked-disabled); }
+      &:disabled {
+        @include button(checked-disabled);
+      }
 
 
       &.keyboard-activating,
-      &:active { background-image: none; }
+      &:active {
+        background-image: none;
+      }
 
       &.has-open-popup {
         background-image: none;
@@ -678,10 +822,14 @@ button {
     }
 
     &.needs-attention {
+
       > label,
-      > image { @extend %needs-attention; }
+      > image {
+        @extend %needs-attention;
+      }
 
       &:checked {
+
         > label,
         > image {
           animation: none;
@@ -694,21 +842,31 @@ button {
   // hide separators
   &.font,
   &.file {
-    separator { @extend %hide_separators; }
+    separator {
+      @extend %hide_separators;
+    }
 
-    > box { border-spacing: $space-size; }
-    > box > box > label { font-weight: bold; }
+    > box {
+      border-spacing: $space-size;
+    }
+
+    > box > box > label {
+      font-weight: bold;
+    }
   }
 
   @at-root %circular-button,
   &.close,
-  &.circular { // The Bloody Circul Button
+  &.circular {
+    // The Bloody Circul Button
     border-radius: $circular-radius;
     min-width: $small-size;
     min-height: $small-size;
     padding: $space-size;
 
-    label { padding: 0; }
+    label {
+      padding: 0;
+    }
   }
 
   @at-root %small-button {
@@ -725,9 +883,17 @@ menubutton {
     color: inherit;
   }
 
-  &.circular > button { @extend %circular-button; }
-  &.flat > button { @extend %button-flat; }
-  &.pill > button { @extend %pill-button; }
+  &.circular > button {
+    @extend %circular-button;
+  }
+
+  &.flat > button {
+    @extend %button-flat;
+  }
+
+  &.pill > button {
+    @extend %pill-button;
+  }
 
   &.suggested-action {
     background-color: $suggested;
@@ -772,18 +938,23 @@ menubutton {
   arrow {
     min-height: 16px;
     min-width: 16px;
+
     &.none {
       -gtk-icon-source: -gtk-icontheme('open-menu-symbolic');
     }
+
     &.down {
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
     }
+
     &.up {
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
     }
+
     &.left {
       -gtk-icon-source: -gtk-icontheme('pan-start-symbolic');
     }
+
     &.right {
       -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
     }
@@ -907,8 +1078,13 @@ splitbutton {
     }
 
     > menubutton > button {
-      &:dir(ltr) { box-shadow: inset 1px 0 $border; }
-      &:dir(rtl) { box-shadow: inset -1px 0 $border; }
+      &:dir(ltr) {
+        box-shadow: inset 1px 0 $border;
+      }
+
+      &:dir(rtl) {
+        box-shadow: inset -1px 0 $border;
+      }
     }
   }
 
@@ -923,15 +1099,25 @@ buttoncontent {
   > label {
     font-weight: bold;
 
-    &:dir(ltr) { padding-right: 2px; }
-    &:dir(rtl) { padding-left: 2px; }
+    &:dir(ltr) {
+      padding-right: 2px;
+    }
+
+    &:dir(rtl) {
+      padding-left: 2px;
+    }
   }
 
   .arrow-button > box > &,
   splitbutton > button > & {
     > label {
-      &:dir(ltr) { padding-right: 0; }
-      &:dir(rtl) { padding-left: 0; }
+      &:dir(ltr) {
+        padding-right: 0;
+      }
+
+      &:dir(rtl) {
+        padding-left: 0;
+      }
     }
   }
 }
@@ -942,7 +1128,9 @@ buttoncontent {
   background-position: right 3px;
   background-size: 6px 6px;
 
-  &:dir(rtl) { background-position: left 3px; }
+  &:dir(rtl) {
+    background-position: left 3px;
+  }
 }
 
 %linked {
@@ -983,16 +1171,17 @@ buttoncontent {
 
 // .linked >        element              child
 $_linked_widgets: ("button:not(.combo)", ""),
-                  ("menubutton",         "> button"),
-                  ("dropdown",           "> button"),
-                  ("colorbutton",        "> button"),
-                  ("fontbutton",         "> button"),
-                  ("tabbutton",          "> button"),
-                  ("entry:not(.combo)",  "");
+  ("menubutton", "> button"),
+  ("dropdown", "> button"),
+  ("colorbutton", "> button"),
+  ("fontbutton", "> button"),
+  ("tabbutton", "> button"),
+  ("entry:not(.combo)", "");
 
 @each $widget, $child in $_linked_widgets {
   .linked:not(.vertical) > {
     #{$widget} {
+
       &:dir(ltr):not(:first-child) #{$child},
       &:dir(rtl):not(:last-child) #{$child} {
         border-top-left-radius: 0;
@@ -1039,13 +1228,20 @@ list > row button.image-button:not(.flat) {
   background-color: transparent;
   box-shadow: none;
   border: none;
-  &:hover { @include button(hover); }
+
+  &:hover {
+    @include button(hover);
+  }
+
   &:active,
-  &:checked { @include button(active); }
+  &:checked {
+    @include button(active);
+  }
 
   @each $b_type, $b_color in (suggested-action, $suggested),
-                             (destructive-action, $destructive) {
-    &.#{$b_type} { // allow colored buttons in lists #3643
+  (destructive-action, $destructive) {
+    &.#{$b_type} {
+      // allow colored buttons in lists #3643
       background-color: $b_color;
       color: on($b_color);
     }
@@ -1065,14 +1261,20 @@ link, %links {
 
 button.link {
   &:link {
-    &, &:focus, &:hover, &:active { color: $link; }
+    &, &:focus, &:hover, &:active {
+      color: $link;
+    }
   }
 
   &:visited {
-    &, &:focus, &:hover, &:active { color: $link-visited; }
+    &, &:focus, &:hover, &:active {
+      color: $link-visited;
+    }
   }
 
-  > label { text-decoration-line: underline; }
+  > label {
+    text-decoration-line: underline;
+  }
 }
 
 /*****************
@@ -1085,9 +1287,13 @@ spinbutton {
   min-height: 0;
   @include entry(normal);
 
-  &:focus-within { @include entry(checked); }
+  &:focus-within {
+    @include entry(checked);
+  }
 
-  &:disabled { @include entry(disabled); }
+  &:disabled {
+    @include entry(disabled);
+  }
 
   &:not(.vertical) {
     // in this horizontal configuration, the whole spinbutton
@@ -1119,10 +1325,14 @@ spinbutton {
       }
 
       &.up:dir(ltr),
-      &.down:dir(rtl) { margin-left: -$space-size / 2; }
+      &.down:dir(rtl) {
+        margin-left: -$space-size / 2;
+      }
 
       &.up:dir(rtl),
-      &.down:dir(ltr) { margin-right: -$space-size / 2; }
+      &.down:dir(ltr) {
+        margin-right: -$space-size / 2;
+      }
     }
   }
 
@@ -1153,9 +1363,13 @@ spinbutton {
         color: $text-secondary;
       }
 
-      &.up { margin: 0 $space-size / 2; }
+      &.up {
+        margin: 0 $space-size / 2;
+      }
 
-      &.down { margin: 0 $space-size / 2; }
+      &.down {
+        margin: 0 $space-size / 2;
+      }
     }
   }
 
@@ -1166,10 +1380,14 @@ spinbutton {
       margin: $space-size;
 
       &.up:dir(ltr),
-      &.down:dir(rtl) { margin-left: $space-size / 2; }
+      &.down:dir(rtl) {
+        margin-left: $space-size / 2;
+      }
 
       &.up:dir(rtl),
-      &.down:dir(ltr) { margin-right: $space-size / 2; }
+      &.down:dir(ltr) {
+        margin-right: $space-size / 2;
+      }
     }
   }
 }
@@ -1198,27 +1416,32 @@ combobox {
   }
 
   button.combo cellview {
-    &:dir(ltr) { margin-left: 8px - ($medium-size - 16px) / 2; }
-    &:dir(rtl) { margin-right: 8px - ($medium-size - 16px) / 2; }
+    &:dir(ltr) {
+      margin-left: 8px - ($medium-size - 16px) / 2;
+    }
+
+    &:dir(rtl) {
+      margin-right: 8px - ($medium-size - 16px) / 2;
+    }
   }
 
   // newstyle
   popover {
-   margin-top: $space-size - 2px;
-   padding: 0;
+    margin-top: $space-size - 2px;
+    padding: 0;
 
-   listview {
+    listview {
       margin: 0;
 
       & > row {
-         padding: $space-size;
+        padding: $space-size;
 
-         &:selected {
-           color: $text;
-           background-color: $overlay-selected;
-         }
+        &:selected {
+          color: $text;
+          background-color: $overlay-selected;
+        }
       }
-   }
+    }
 
     // drodowns with searchboxes on top
     .dropdown-searchbar {
@@ -1232,6 +1455,7 @@ combobox {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+
       &:dir(rtl) {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
@@ -1298,15 +1522,25 @@ button.combo:only-child {
 
   @include entry(normal);
 
-  &:focus { @include button(flat-focus); }
+  &:focus {
+    @include button(flat-focus);
+  }
 
-  &:hover { @include button(flat-hover); }
+  &:hover {
+    @include button(flat-hover);
+  }
 
-  &:active { @include button(flat-active); }
+  &:active {
+    @include button(flat-active);
+  }
 
-  &:checked { @include button(flat-checked); }
+  &:checked {
+    @include button(flat-checked);
+  }
 
-  &:disabled { @include button(disabled); }
+  &:disabled {
+    @include button(disabled);
+  }
 }
 
 
@@ -1319,10 +1553,14 @@ toolbar {
   background-color: $background;
   border-spacing: $space-size;
 
-  button { @extend %button-flat; }
+  button {
+    @extend %button-flat;
+  }
 
   // on OSD
-  .osd & { background-color: transparent; }
+  .osd & {
+    background-color: transparent;
+  }
 
   // stand-alone OSD toolbars
   @at-root %toolbar_osd, &.osd {
@@ -1333,47 +1571,71 @@ toolbar {
     background-color: $surface;
     color: $text;
 
-    &:backdrop { box-shadow: $shadow-z2, inset 0 1px highlight($surface); }
+    &:backdrop {
+      box-shadow: $shadow-z2, inset 0 1px highlight($surface);
+    }
 
     &.left,
     &.right,
     &.top,
-    &.bottom { border-radius: 0; } // positional classes for `attached` osd toolbars
+    &.bottom {
+      border-radius: 0;
+    }
+
+    // positional classes for `attached` osd toolbars
 
     &.bottom {
       box-shadow: none;
       background-color: transparent;
       background-image: linear-gradient(to bottom,
-                                        transparent,
-                                        rgba(black, 0.1) 30%,
-                                        rgba(black, 0.2) 50%,
-                                        rgba(black, 0.4));
+          transparent,
+          rgba(black, 0.1) 30%,
+          rgba(black, 0.2) 50%,
+          rgba(black, 0.4));
     }
   }
 
   // toolbar separators
-  &.horizontal > separator { margin: 2px; }
-  &.vertical > separator { margin: 2px; }
+  &.horizontal > separator {
+    margin: 2px;
+  }
+
+  &.vertical > separator {
+    margin: 2px;
+  }
 
   &:not(.inline-toolbar):not(.osd) {
+
     scale,
     entry,
     spinbutton,
-    button { margin: 2px; }
+    button {
+      margin: 2px;
+    }
 
     .linked entry,
     .linked spinbutton,
     .linked button {
-      &:not(:first-child) { margin-left: 0; }
-      &:not(:last-child) { margin-right: 0; }
+      &:not(:first-child) {
+        margin-left: 0;
+      }
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
     }
 
     spinbutton {
+
       entry,
-      button { margin: 0; }
+      button {
+        margin: 0;
+      }
     }
 
-    switch { margin: 2px + $space-size 2px; }
+    switch {
+      margin: 2px + $space-size 2px;
+    }
   }
 }
 
@@ -1391,7 +1653,9 @@ searchbar > revealer > box {
   entry,
   button,
   menubutton,
-  splitbutton { margin: 0; }
+  splitbutton {
+    margin: 0;
+  }
 }
 
 /***************
@@ -1402,9 +1666,13 @@ searchbar > revealer > box {
   @extend %button-flat;
   color: $titlebar-text-secondary;
 
-  &:focus, &:hover, &:active, &:checked { color: $titlebar-text; }
+  &:focus, &:hover, &:active, &:checked {
+    color: $titlebar-text;
+  }
 
-  &:disabled { color: $titlebar-text-secondary-disabled; }
+  &:disabled {
+    color: $titlebar-text-secondary-disabled;
+  }
 
   &:checked {
     &:disabled {
@@ -1416,14 +1684,20 @@ searchbar > revealer > box {
   &:backdrop {
     color: $titlebar-text-disabled;
 
-    &:focus, &:hover, &:active { color: $titlebar-text-secondary; }
+    &:focus, &:hover, &:active {
+      color: $titlebar-text-secondary;
+    }
 
-    &:disabled { color: $titlebar-text-secondary-disabled; }
+    &:disabled {
+      color: $titlebar-text-secondary-disabled;
+    }
 
     &:checked {
       color: $titlebar-text-secondary;
 
-      &:disabled { color: $titlebar-text-secondary-disabled; }
+      &:disabled {
+        color: $titlebar-text-secondary-disabled;
+      }
     }
   }
 }
@@ -1445,9 +1719,13 @@ searchbar > revealer > box {
   image {
     color: $titlebar-text-secondary;
 
-    &:hover, &:active { color: $titlebar-text; }
+    &:hover, &:active {
+      color: $titlebar-text;
+    }
 
-    &:disabled { color: $titlebar-text-disabled; }
+    &:disabled {
+      color: $titlebar-text-disabled;
+    }
   }
 }
 
@@ -1460,18 +1738,26 @@ headerbar {
   background-color: $titlebar;
   color: $titlebar-text;
 
-  @if $rimless == 'true' {
+  @if $rimless =='true' {
     box-shadow: inset 0 1px highlight($titlebar);
     border-radius: $window-radius $window-radius 0 0;
-  } @else { box-shadow: none; }
+  }
 
-  &:disabled { color: $titlebar-text-disabled; }
+  @else {
+    box-shadow: none;
+  }
+
+  &:disabled {
+    color: $titlebar-text-disabled;
+  }
 
   &:backdrop {
     background-color: $titlebar-backdrop;
     color: $titlebar-text-secondary;
 
-    &:disabled { color: $titlebar-text-secondary-disabled; }
+    &:disabled {
+      color: $titlebar-text-secondary-disabled;
+    }
 
     > windowhandle {
       // opacity looks weird with GtkSwitch, but filter works fine
@@ -1485,23 +1771,37 @@ headerbar {
     background-color: transparent;
     color: $text;
 
-    @if $variant == 'light' and $topbar == 'dark' {
+    @if $variant =='light' and $topbar =='dark' {
       button:not(.suggested-action):not(.destructive-action) {
         @include button(flat-normal);
 
-        &:focus { @include button(focus); }
+        &:focus {
+          @include button(focus);
+        }
 
-        &:hover { @include button(hover); }
+        &:hover {
+          @include button(hover);
+        }
 
-        &:active { @include button(active); }
+        &:active {
+          @include button(active);
+        }
 
-        &:disabled { @include button(disabled); }
+        &:disabled {
+          @include button(disabled);
+        }
 
-        &:checked { @include button(checked); }
+        &:checked {
+          @include button(checked);
+        }
 
-        &:checked:hover { @include button(checked-hover); }
+        &:checked:hover {
+          @include button(checked-hover);
+        }
 
-        &:checked:disabled { @include button(checked-disabled); }
+        &:checked:disabled {
+          @include button(checked-disabled);
+        }
 
         &.flat {
           @extend %button-flat;
@@ -1525,7 +1825,9 @@ headerbar {
     transition: color $duration $ease-out;
     color: $titlebar-text-secondary;
 
-    &:backdrop { color: $titlebar-text-disabled; }
+    &:backdrop {
+      color: $titlebar-text-disabled;
+    }
   }
 
   > windowhandle > box {
@@ -1542,9 +1844,13 @@ headerbar {
     @extend %titlebar-button;
   }
 
-  entry { @extend %titlebar-entry; }
+  entry {
+    @extend %titlebar-entry;
+  }
 
-  .linked:not(.vertical) > entry:not(:only-child) { border-radius: $corner-radius; }
+  .linked:not(.vertical) > entry:not(:only-child) {
+    border-radius: $corner-radius;
+  }
 
   button.suggested-action, button.destructive-action {
     &:disabled {
@@ -1553,7 +1859,9 @@ headerbar {
     }
   }
 
-  popover { // reset
+  popover {
+
+    // reset
     button:not(.suggested-action):not(.destructive-action):not(.flat) {
       @extend %button-basic;
     }
@@ -1578,11 +1886,12 @@ headerbar {
     background-color: $titlebar-divider;
   }
 
-  stackswitcher { // reset
+  stackswitcher {
+    // reset
     margin: 0;
     border-radius: $circular-radius;
 
-    @if $rimless == 'false' {
+    @if $rimless =='false' {
       border: 2px solid $titlebar-primary;
     }
 
@@ -1608,7 +1917,9 @@ headerbar {
       color: on($primary, secondary);
     }
 
-    .subtitle:link { color: on($primary); }
+    .subtitle:link {
+      color: on($primary);
+    }
 
     button:not(.suggested-action):not(.destructive-action) {
       @extend %button-on-dark;
@@ -1618,7 +1929,9 @@ headerbar {
       padding-left: 16px;
       padding-right: 16px;
 
-      .arrow { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+      .arrow {
+        -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      }
     }
   }
 
@@ -1637,7 +1950,9 @@ headerbar {
   .fullscreen & {
     border-radius: 0;
 
-    @if $rimless == 'true' { box-shadow: none; }
+    @if $rimless =='true' {
+      box-shadow: none;
+    }
   }
 
   &.default-decoration {
@@ -1657,6 +1972,7 @@ headerbar {
     }
 
     windowcontrols {
+
       button,
       menubutton {
         min-height: $small-size;
@@ -1668,14 +1984,15 @@ headerbar {
   }
 
   .solid-csd & {
-    &:dir(rtl), &:dir(ltr) { // specificity bump
+    &:dir(rtl), &:dir(ltr) {
+      // specificity bump
       border-radius: 0;
       box-shadow: none; // just remove the highlight
     }
   }
 }
 
-@if $rimless == 'true' {
+@if $rimless =='true' {
   leaflet {
     > box:last-child > headerbar {
       border-top-right-radius: 0;
@@ -1692,19 +2009,21 @@ window.devel {
   headerbar.titlebar {
     $c: $titlebar;
     $gradient: cross-fade(10% -gtk-icontheme("system-run-symbolic"), image(transparent)) 90% 0/256px 256px no-repeat,
-               linear-gradient(to right, transparent 65%, transparentize($primary, 0.8)),
-               linear-gradient(to top, darken($c, 3%), $c 3px, lighten($c, 6%));
-    @if $variant == 'dark' {
+      linear-gradient(to right, transparent 65%, transparentize($primary, 0.8)),
+      linear-gradient(to top, darken($c, 3%), $c 3px, lighten($c, 6%));
+
+    @if $variant =='dark' {
       $gradient: cross-fade(10% -gtk-icontheme("system-run-symbolic"), image(transparent)) 90% 0/256px 256px no-repeat,
-                 linear-gradient(to right, transparent 65%, transparentize($primary, 0.9)),
-                 linear-gradient(to top, lighten($c, 3%) 3px, lighten($c, 5%));
+        linear-gradient(to right, transparent 65%, transparentize($primary, 0.9)),
+        linear-gradient(to top, lighten($c, 3%) 3px, lighten($c, 5%));
     }
 
     background: $titlebar $gradient;
 
     &:backdrop {
       background: $titlebar cross-fade(10% -gtk-icontheme("system-run-symbolic"), image(transparent)) 90% 0/256px 256px no-repeat,
-                  image($titlebar); /* background-color would flash */
+        image($titlebar);
+      /* background-color would flash */
     }
   }
 }
@@ -1719,9 +2038,13 @@ pathbar > button {
   border-radius: $corner-radius;
 
   label:not(:only-child) {
-    &:first-child { margin-left: 0; }
+    &:first-child {
+      margin-left: 0;
+    }
 
-    &:last-child { margin-right: 0; }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   &.text-button {
@@ -1783,7 +2106,11 @@ treeview.view {
     outline: none;
   }
 
-  > rubberband { @extend rubberband; } // to avoid borders being overridden by the previously set props
+  > rubberband {
+    @extend rubberband;
+  }
+
+  // to avoid borders being overridden by the previously set props
 
   &:hover, &:selected {
     border-radius: 0;
@@ -1799,9 +2126,13 @@ treeview.view {
   &:drop(active) {
     box-shadow: none;
 
-    &.after { border-top-style: none; }
+    &.after {
+      border-top-style: none;
+    }
 
-    &.before { border-bottom-style: none; }
+    &.before {
+      border-bottom-style: none;
+    }
   }
 
   > dndtarget:drop(active) {
@@ -1809,9 +2140,13 @@ treeview.view {
     border-width: 1px;
     border-color: $overlay-selected;
 
-    &.after { border-top-style: none; }
+    &.after {
+      border-top-style: none;
+    }
 
-    &.before { border-bottom-style: none; }
+    &.before {
+      border-bottom-style: none;
+    }
   }
 
   &.expander {
@@ -1819,39 +2154,55 @@ treeview.view {
     min-height: 16px;
     -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
 
-    &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+    &:dir(rtl) {
+      -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl');
+    }
 
     color: $text-secondary;
 
-    &:hover { color: $text; }
+    &:hover {
+      color: $text;
+    }
 
     &:selected {
       color: $text;
 
-      &:hover { color: $text; }
+      &:hover {
+        color: $text;
+      }
     }
 
-    &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+    &:checked {
+      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+    }
 
-    &:disabled { color: $text-secondary-disabled; }
+    &:disabled {
+      color: $text-secondary-disabled;
+    }
   }
 
-  &.progressbar { // progress bar in treeviews
+  &.progressbar {
+    // progress bar in treeviews
     border-bottom: $space-size solid $primary;
     box-shadow: none;
     background-color: transparent;
     background-image: none;
 
-    &:selected:hover { box-shadow: none; }
+    &:selected:hover {
+      box-shadow: none;
+    }
   }
 
-  &.trough { // progress bar trough in treeviews
+  &.trough {
+    // progress bar trough in treeviews
     border-bottom: $space-size solid $track-disabled;
     box-shadow: none;
     background-color: transparent;
     background-image: none;
 
-    &:selected:hover { box-shadow: none; }
+    &:selected:hover {
+      box-shadow: none;
+    }
   }
 
   > header {
@@ -1864,14 +2215,18 @@ treeview.view {
       border-style: none none none solid;
       border-radius: 0;
       border-image: linear-gradient(to bottom,
-                                    transparent 20%,
-                                    $border 20%,
-                                    $border 80%,
-                                    transparent 80%) 0 0 0 1 / 0 0 0 1px stretch;
+          transparent 20%,
+          $border 20%,
+          $border 80%,
+          transparent 80%) 0 0 0 1 / 0 0 0 1px stretch;
 
-      &:not(:focus):not(:hover):not(:active) { color: $text-secondary; }
+      &:not(:focus):not(:hover):not(:active) {
+        color: $text-secondary;
+      }
 
-      &, &:disabled { background-color: $base; }
+      &, &:disabled {
+        background-color: $base;
+      }
 
       &:first-child {
         border-left-style: none;
@@ -1881,7 +2236,8 @@ treeview.view {
   }
 
   button.dnd,
-  header.button.dnd { // for treeview-like derive widgets
+  header.button.dnd {
+    // for treeview-like derive widgets
     padding: 2px 6px;
     border-style: none solid solid;
     border-width: 1px;
@@ -1893,7 +2249,11 @@ treeview.view {
     color: $primary;
   }
 
-  acceleditor > label { background-color: $primary; } // see tests/testaccel to test
+  acceleditor > label {
+    background-color: $primary;
+  }
+
+  // see tests/testaccel to test
 }
 
 
@@ -1911,7 +2271,9 @@ menubar {
     color: $titlebar-text-secondary;
   }
 
-  .csd & { transition: $transition; }
+  .csd & {
+    transition: $transition;
+  }
 
   > item {
     transition: $transition;
@@ -1919,15 +2281,22 @@ menubar {
     padding: 4px 8px;
     color: $titlebar-text-secondary;
 
-    &:selected { // Seems like it :hover even with keyboard focus
+    &:selected {
+      // Seems like it :hover even with keyboard focus
       transition: none;
       background-color: $overlay-checked;
       color: $titlebar-text;
     }
 
-    &:disabled { color: $titlebar-text-secondary-disabled; }
+    &:disabled {
+      color: $titlebar-text-secondary-disabled;
+    }
 
-    label:disabled { color: inherit; } // to inherit the above color
+    label:disabled {
+      color: inherit;
+    }
+
+    // to inherit the above color
   }
 
   //nested submenus
@@ -1957,7 +2326,9 @@ popover.menu {
       outline: none;
       transition: none;
 
-      &:selected { background-image: image($overlay-selected); }
+      &:selected {
+        background-image: image($overlay-selected);
+      }
     }
   }
 
@@ -1993,24 +2364,29 @@ popover.background {
     padding: $space-size;
     background-color: $surface;
     background-clip: border-box;
-    border-radius: if($rimless == 'true', $menu-radius, $menu-radius + 2px);
+    border-radius: if($rimless =='true', $menu-radius, $menu-radius + 2px);
     color: $text;
 
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       border: none;
       box-shadow: $shadow-z4;
-    } @else {
+    }
+
+    @else {
       border: 2px solid $primary;
     }
   }
 
   &:backdrop {
+
     > arrow,
     > contents {
-      @if $rimless == 'true' {
+      @if $rimless =='true' {
         border: none;
         box-shadow: $shadow-z2;
-      } @else {
+      }
+
+      @else {
         border: 2px solid $primary;
       }
     }
@@ -2042,7 +2418,9 @@ popover.background {
       }
     }
 
-    &:disabled { color: $text-disabled; }
+    &:disabled {
+      color: $text-disabled;
+    }
 
     accelerator {
       color: $text-disabled;
@@ -2054,8 +2432,13 @@ popover.background {
     }
 
     arrow {
-      &.left { -gtk-icon-source: -gtk-icontheme("go-previous-symbolic"); }
-      &.right { -gtk-icon-source: -gtk-icontheme("go-next-symbolic"); }
+      &.left {
+        -gtk-icon-source: -gtk-icontheme("go-previous-symbolic");
+      }
+
+      &.right {
+        -gtk-icon-source: -gtk-icontheme("go-next-symbolic");
+      }
     }
   }
 
@@ -2065,6 +2448,7 @@ popover.background {
   }
 
   > contents {
+
     > list,
     > .view,
     > toolbar {
@@ -2078,16 +2462,22 @@ popover.background {
       margin: $space-size / 2 0;
     }
 
-    list separator { margin: 0; }
+    list separator {
+      margin: 0;
+    }
 
-    stack > box { padding: 0; }
+    stack > box {
+      padding: 0;
+    }
 
     stack > scrolledwindow > viewport {
       border: 1px solid $border;
       border-radius: 2px;
     }
 
-    > box > button { margin: 0; }
+    > box > button {
+      margin: 0;
+    }
   }
 
   // FIXME: Use the popover color instead of transparent as a workaround for .view
@@ -2119,7 +2509,9 @@ popover.background {
 
   &.touch-selection,
   &.magnifier {
-    button { @extend %button-on-dark; }
+    button {
+      @extend %button-on-dark;
+    }
   }
 }
 
@@ -2133,8 +2525,8 @@ popover.background {
 
 %tabs_tab {
   transition: $transition,
-              background-size 0ms,
-              background-image 0ms;
+    background-size 0ms,
+    background-image 0ms;
   min-height: $small-size;
   min-width: $small-size;
   padding: $space-size / 2 $space-size;
@@ -2152,21 +2544,28 @@ popover.background {
     box-shadow: none;
   }
 
-  &:disabled { color: $text-secondary-disabled; }
+  &:disabled {
+    color: $text-secondary-disabled;
+  }
 
   &:checked, &:selected {
     transition: $transition;
-    background-color: if($variant == 'light', rgba($base, 1), rgba(white, 0.15));
+    background-color: if($variant =='light', rgba($base, 1), rgba(white, 0.15));
     color: $text;
     box-shadow: 0 1px 3px rgba(black, 0.06);
 
-    &:disabled { color: $text-disabled; }
+    &:disabled {
+      color: $text-disabled;
+    }
   }
 }
 
 notebook {
+
   frame > paned > & > header,
-  &.frame > header { background-color: $fill; }
+  &.frame > header {
+    background-color: $fill;
+  }
 
   &, &.frame {
     background-color: $base;
@@ -2182,7 +2581,9 @@ notebook {
     > list {
       // @extend %circular_list;
 
-      row.activatable { border-radius: $corner-radius; }
+      row.activatable {
+        border-radius: $corner-radius;
+      }
     }
   }
 
@@ -2305,12 +2706,18 @@ notebook {
     &.bottom {
       tabs {
         &:not(:only-child) {
-          &:first-child { margin-left: 0; }
+          &:first-child {
+            margin-left: 0;
+          }
 
-          &:last-child { margin-right: 0; }
+          &:last-child {
+            margin-right: 0;
+          }
         }
 
-        tab.reorderable-page { border-style: solid; }
+        tab.reorderable-page {
+          border-style: solid;
+        }
       }
     }
 
@@ -2321,12 +2728,18 @@ notebook {
         // padding-bottom: 8px;
 
         &:not(:only-child) {
-          &:first-child { margin-top: 0; }
+          &:first-child {
+            margin-top: 0;
+          }
 
-          &:last-child { margin-bottom: 0; }
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
 
-        tab.reorderable-page { border-style: solid; }
+        tab.reorderable-page {
+          border-style: solid;
+        }
       }
     }
 
@@ -2338,7 +2751,8 @@ notebook {
     }
   }
 
-  > stack:not(:only-child) { // the :not(:only-child) is for "hidden" notebooks
+  > stack:not(:only-child) {
+    // the :not(:only-child) is for "hidden" notebooks
     background-color: transparent;
     border-radius: $corner-radius;
   }
@@ -2429,8 +2843,8 @@ dnd tab {
   margin: $small-size;
   outline: none;
   box-shadow: 0 1px 5px 1px transparentize(black, .91),
-              0 2px 14px 3px transparentize(black, .95),
-              0 0 0 1px transparentize(black, .95);
+    0 2px 14px 3px transparentize(black, .95),
+    0 0 0 1px transparentize(black, .95);
 }
 
 tabbar,
@@ -2468,11 +2882,16 @@ tabthumbnail {
   }
 
   transition: box-shadow 200ms $ease-out,
-              background-color $ease-out;
+  background-color $ease-out;
 
   .needs-attention {
-    &:dir(ltr) { transform: translate(8px, -8px); }
-    &:dir(rtl) { transform: translate(-8px, -8px); }
+    &:dir(ltr) {
+      transform: translate(8px, -8px);
+    }
+
+    &:dir(rtl) {
+      transform: translate(-8px, -8px);
+    }
 
     > widget {
       background: $primary;
@@ -2517,6 +2936,7 @@ tabthumbnail {
 
 taboverview > .overview {
   &.scrolled-to-top {
+
     headerbar,
     searchbar > revealer > box {
       background: none;
@@ -2578,11 +2998,17 @@ scrollbar {
       box-shadow: none;
       outline: none;
 
-      &:hover { background-color: $text-secondary; }
+      &:hover {
+        background-color: $text-secondary;
+      }
 
-      &:active { background-color: $text; }
+      &:active {
+        background-color: $text;
+      }
 
-      &:disabled { background-color: $text-secondary-disabled; }
+      &:disabled {
+        background-color: $text-secondary-disabled;
+      }
     }
   }
 
@@ -2592,9 +3018,13 @@ scrollbar {
       min-height: 4px;
     }
 
-    &.horizontal > trough > slider { margin: 0; }
+    &.horizontal > trough > slider {
+      margin: 0;
+    }
 
-    &.vertical > trough > slider { margin: 0; }
+    &.vertical > trough > slider {
+      margin: 0;
+    }
   }
 
   &.overlay-indicator {
@@ -2627,26 +3057,40 @@ scrollbar {
         background-clip: padding-box;
         -gtk-icon-source: none;
 
-        &:disabled { background-color: $text-secondary-disabled; }
+        &:disabled {
+          background-color: $text-secondary-disabled;
+        }
       }
 
       &.horizontal {
-        > range > trough > slider { min-width: $_slider_min_length; }
+        > range > trough > slider {
+          min-width: $_slider_min_length;
+        }
 
-        button { min-width: 8px; }
+        button {
+          min-width: 8px;
+        }
       }
 
       &.vertical {
-        > range > trough > slider { min-height: $_slider_min_length; }
+        > range > trough > slider {
+          min-height: $_slider_min_length;
+        }
 
-        button { min-height: 8px; }
+        button {
+          min-height: 8px;
+        }
       }
     }
   }
 
-  &.horizontal > range > trough > slider { min-width: $_slider_min_length; }
+  &.horizontal > range > trough > slider {
+    min-width: $_slider_min_length;
+  }
 
-  &.vertical > range > trough > slider { min-height: $_slider_min_length; }
+  &.vertical > range > trough > slider {
+    min-height: $_slider_min_length;
+  }
 
   // button styling
   button {
@@ -2661,17 +3105,25 @@ scrollbar {
   // button icons
   &.vertical {
     button {
-      &.down { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+      &.down {
+        -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      }
 
-      &.up { -gtk-icon-source: -gtk-icontheme('pan-up-symbolic'); }
+      &.up {
+        -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
+      }
     }
   }
 
   &.horizontal {
     button {
-      &.down { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic'); }
+      &.down {
+        -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
+      }
 
-      &.up { -gtk-icon-source: -gtk-icontheme('pan-start-symbolic'); }
+      &.up {
+        -gtk-icon-source: -gtk-icontheme('pan-start-symbolic');
+      }
     }
   }
 }
@@ -2696,7 +3148,9 @@ switch {
     border-color: $primary;
   }
 
-  &:disabled { opacity: 0.5; }
+  &:disabled {
+    opacity: 0.5;
+  }
 
   // hide on/off icons for >=3.24.5
   image {
@@ -2715,11 +3169,17 @@ switch {
     border: none;
   }
 
-  &:focus > slider { box-shadow: 0 0 0 10px $fill; }
+  &:focus > slider {
+    box-shadow: 0 0 0 10px $fill;
+  }
 
-  &:hover > slider { box-shadow: 0 0 0 10px $divider; }
+  &:hover > slider {
+    box-shadow: 0 0 0 10px $divider;
+  }
 
-  &:focus:hover > slider { box-shadow: 0 0 0 10px $divider; }
+  &:focus:hover > slider {
+    box-shadow: 0 0 0 10px $divider;
+  }
 
   &:checked > slider {
     background-color: $base;
@@ -2745,10 +3205,12 @@ radiobutton.text-button {
   // this is for a nice focus on check and radios text
   padding: 2px;
 
-  label:not(:only-child) { margin: 0 4px; }
+  label:not(:only-child) {
+    margin: 0 4px;
+  }
 }
 
-$check_radio_icon_size: if($compact == 'false', 16px, 20px);
+$check_radio_icon_size: if($compact =='false', 16px, 20px);
 
 check,
 radio {
@@ -2763,8 +3225,8 @@ radio {
   border-radius: $circular-radius;
   box-shadow: 0 0 0 10px transparent;
   transition: $transition,
-  background-color $ripple-fade-in-duration $ease-out,
-  box-shadow $ripple-fade-in-duration $ease-out;
+    background-color $ripple-fade-in-duration $ease-out,
+    box-shadow $ripple-fade-in-duration $ease-out;
 
   &:hover {
     border-color: inherit;
@@ -2802,7 +3264,9 @@ radio {
     border-color: $text-secondary-disabled;
   }
 
-  &:not(:hover):focus { box-shadow: none; }
+  &:not(:hover):focus {
+    box-shadow: none;
+  }
 
   popover & {
     transition: none;
@@ -2845,36 +3309,52 @@ radio {
       color: inherit;
     }
 
-    &:dir(ltr) { margin-right: $space-size; }
+    &:dir(ltr) {
+      margin-right: $space-size;
+    }
 
-    &:dir(rtl) { margin-left: $space-size; }
+    &:dir(rtl) {
+      margin-left: $space-size;
+    }
   }
 }
 
 %check,
 check {
-  &:checked { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/check-symbolic.svg")),
-                                            -gtk-recolor(url("assets/scalable/check-symbolic@2.svg"))); }
+  &:checked {
+    -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/check-symbolic.svg")),
+        -gtk-recolor(url("assets/scalable/check-symbolic@2.svg")));
+  }
 }
 
 %radio,
 radio {
-  &:checked { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/dot-symbolic.svg")),
-                                            -gtk-recolor(url("assets/scalable/dot-symbolic@2.svg"))); }
+  &:checked {
+    -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/dot-symbolic.svg")),
+        -gtk-recolor(url("assets/scalable/dot-symbolic@2.svg")));
+  }
 }
 
 check, radio {
-  &:indeterminate { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/line-symbolic.svg")),
-                                                  -gtk-recolor(url("assets/scalable/line-symbolic@2.svg"))); }
+  &:indeterminate {
+    -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/scalable/line-symbolic.svg")),
+        -gtk-recolor(url("assets/scalable/line-symbolic@2.svg")));
+  }
 }
 
 // ANIMATION:
 // this is made with those pretty convoluted transitions, since checks and radios have to animate only on state changes,
 // the transformation is set on the active state and it get reset on the checked state.
-check:not(:checked):active { -gtk-icon-transform: rotate(90deg); }
+check:not(:checked):active {
+  -gtk-icon-transform: rotate(90deg);
+}
+
 // radio:not(:checked):active { -gtk-icon-transform: scale(0); }
 
-check:not(:checked):indeterminate:active { -gtk-icon-transform: scaleX(-1); }
+check:not(:checked):indeterminate:active {
+  -gtk-icon-transform: scaleX(-1);
+}
+
 // radio:not(:checked):indeterminate:active { -gtk-icon-transform: scaleX(-1); } // instead of rotateY(180deg)
 
 
@@ -2901,9 +3381,13 @@ scale {
   min-height: $trough_size;
   min-width: $trough_size;
 
-  &.horizontal { padding: ($medium-size - $trough_size) / 2 12px; }
+  &.horizontal {
+    padding: ($medium-size - $trough_size) / 2 12px;
+  }
 
-  &.vertical { padding: 12px ($medium-size - $trough_size) / 2; }
+  &.vertical {
+    padding: 12px ($medium-size - $trough_size) / 2;
+  }
 
   // the slider is inside the trough, so to have make it bigger there's a negative margin
   slider {
@@ -2912,8 +3396,8 @@ scale {
     margin: $slider_margin;
   }
 
-   // click-and-hold the slider to activate
-   &.fine-tune {
+  // click-and-hold the slider to activate
+  &.fine-tune {
     &.horizontal {
       min-height: $finetune_trough_size;
       padding-top: ($medium-size - $finetune_trough_size) / 2;
@@ -2927,7 +3411,9 @@ scale {
     }
 
     // to make the trough grow in fine-tune mode
-    slider { margin: $finetune_slider_margin; }
+    slider {
+      margin: $finetune_slider_margin;
+    }
   }
 
   // the backing bit
@@ -2936,7 +3422,9 @@ scale {
     outline: none;
     background-color: $track;
 
-    &:disabled { background-color: $track-disabled; }
+    &:disabled {
+      background-color: $track-disabled;
+    }
   }
 
   // the colored part of the backing bit
@@ -2956,7 +3444,9 @@ scale {
     transition: background-color $duration $ease-out;
     background-color: $track;
 
-    &:disabled { background-color: transparent; }
+    &:disabled {
+      background-color: transparent;
+    }
   }
 
   slider {
@@ -2980,7 +3470,9 @@ scale {
   }
 
   marks,
-  value { color: $text-secondary; }
+  value {
+    color: $text-secondary;
+  }
 
   indicator {
     background-color: $track;
@@ -2996,9 +3488,9 @@ scale {
 
   //marks margins
   @each $scale_orient, $marks_class, $marks_pos, $marks_margin in (horizontal, top, top, bottom),
-                                                                  (horizontal, bottom, bottom, top),
-                                                                  (vertical, top, left, right),
-                                                                  (vertical, bottom, right, left) {
+  (horizontal, bottom, bottom, top),
+  (vertical, top, left, right),
+  (vertical, bottom, right, left) {
     &.#{$scale_orient} > marks {
       &.#{$marks_class} {
         margin-#{$marks_margin}: $_marks_distance;
@@ -3031,14 +3523,15 @@ scale {
   // *WARNING* scale with marks madness following
 
   @each $dir_class, $dir_infix in ('horizontal', 'horz'),
-                                  ('vertical', 'vert') {
+  ('vertical', 'vert') {
+
     @each $marks_infix, $marks_class in ('marks-before', 'marks-before:not(.marks-after)'),
-                                        ('marks-after', 'marks-after:not(.marks-before)') {
+    ('marks-after', 'marks-after:not(.marks-before)') {
       &.#{$dir_class}.#{$marks_class} {
         slider {
           transition: background-color $duration $ease-out,
-                      background-size $ripple-fade-out-duration $ease-out,
-                      background-image $ripple-fade-out-opacity-duration $ease-out;
+            background-size $ripple-fade-out-duration $ease-out,
+            background-image $ripple-fade-out-opacity-duration $ease-out;
           min-height: 32px;
           min-width: 32px;
           margin: -15px;
@@ -3052,11 +3545,17 @@ scale {
             box-shadow: none;
           }
 
-          &:focus { background-color: $overlay-focus; }
+          &:focus {
+            background-color: $overlay-focus;
+          }
 
-          &:hover { background-color: $overlay-hover; }
+          &:hover {
+            background-color: $overlay-hover;
+          }
 
-          &:focus:hover { background-color: $overlay-focus-hover; }
+          &:focus:hover {
+            background-color: $overlay-focus-hover;
+          }
 
           &:active {
             background-size: auto, 0% 0%;
@@ -3064,7 +3563,7 @@ scale {
           }
 
           @each $state, $state_infix in ('', ''),
-                                        (':disabled', '-disabled') {
+          (':disabled', '-disabled') {
             &#{$state} {
               $_scale_asset: 'assets/scale-#{$dir_infix}-#{$marks_infix}-slider#{$state_infix}#{$asset-suffix}';
 
@@ -3090,7 +3589,8 @@ scale {
       padding: 0 0 12px 0;
 
       slider {
-        &:dir(ltr), &:dir(rtl) { // specificity bump
+        &:dir(ltr), &:dir(rtl) {
+          // specificity bump
           margin-bottom: $color_slider_margin;
           margin-top: $color_marks_slider_margin;
         }
@@ -3124,15 +3624,22 @@ scale {
  * Progress bars *
  *****************/
 progressbar {
+
   // sizing
   &.horizontal {
+
     trough,
-    progress { min-height: $space-size; }
+    progress {
+      min-height: $space-size;
+    }
   }
 
   &.vertical {
+
     trough,
-    progress { min-width: $space-size; }
+    progress {
+      min-width: $space-size;
+    }
   }
 
   // FIXME: insensitive state missing and some other state should be set probably
@@ -3149,7 +3656,8 @@ progressbar {
     background-color: $primary;
   }
 
-  &.osd { // progressbar.osd used for epiphany page loading progress
+  &.osd {
+    // progressbar.osd used for epiphany page loading progress
     min-width: $space-size;
     min-height: $space-size;
     background-color: transparent;
@@ -3157,12 +3665,20 @@ progressbar {
     margin: 0;
     padding: 0;
 
-    trough { background-color: transparent; }
+    trough {
+      background-color: transparent;
+    }
 
-    progress { background-color: $primary; }
+    progress {
+      background-color: $primary;
+    }
   }
 
-  trough.empty progress { all: unset; } // makes the progress indicator disappear, when the fraction is 0
+  trough.empty progress {
+    all: unset;
+  }
+
+  // makes the progress indicator disappear, when the fraction is 0
 }
 
 
@@ -3171,22 +3687,30 @@ progressbar {
  *************/
 levelbar {
   &.horizontal {
-    block { min-height: $space-size; }
+    block {
+      min-height: $space-size;
+    }
 
     &.discrete block {
       min-width: $medium-size;
 
-      &:not(:last-child) { margin-right: 2px; }
+      &:not(:last-child) {
+        margin-right: 2px;
+      }
     }
   }
 
   &.vertical {
-    block { min-width: $space-size; }
+    block {
+      min-width: $space-size;
+    }
 
     &.discrete block {
       min-height: $medium-size;
 
-      &:not(:last-child) { margin-bottom: 2px; }
+      &:not(:last-child) {
+        margin-bottom: 2px;
+      }
     }
   }
 
@@ -3201,14 +3725,22 @@ levelbar {
   }
 
   block {
-    &.low { background-color: $warning; }
+    &.low {
+      background-color: $warning;
+    }
 
     &.high,
-    &:not(.empty) { background-color: $primary; }
+    &:not(.empty) {
+      background-color: $primary;
+    }
 
-    &.full { background-color: $success; }
+    &.full {
+      background-color: $success;
+    }
 
-    &.empty { background-color: $track-disabled; }
+    &.empty {
+      background-color: $track-disabled;
+    }
   }
 }
 
@@ -3231,7 +3763,9 @@ window.dialog.print {
     }
   }
 
-  .dialog-action-box { margin: 12px; }
+  .dialog-action-box {
+    margin: 12px;
+  }
 }
 
 
@@ -3243,11 +3777,17 @@ frame,
 .frame {
   border: 1px solid $divider;
 
-  > list { border: none; }
+  > list {
+    border: none;
+  }
 
-  &.view { border-radius: $corner-radius; }
+  &.view {
+    border-radius: $corner-radius;
+  }
 
-  &.flat { border-style: none; }
+  &.flat {
+    border-style: none;
+  }
 }
 
 frame {
@@ -3258,7 +3798,11 @@ frame {
   }
 
   &.flat > border,
-  statusbar & > border { border: none; } // for backward compatibility
+  statusbar & > border {
+    border: none;
+  }
+
+  // for backward compatibility
 }
 
 actionbar > revealer > box {
@@ -3275,26 +3819,37 @@ statusbar {
 }
 
 scrolledwindow {
-  viewport.frame { // avoid double borders when viewport inside scrolled window
+  viewport.frame {
+    // avoid double borders when viewport inside scrolled window
     border: none;
   }
 
   stack &.frame {
     // border-radius: $corner-radius;
 
-    viewport.frame list { border: none; }
+    viewport.frame list {
+      border: none;
+    }
   }
 
   // This is used when content is touch-dragged past boundaries.
   // draws a box on top of the content, the size changes programmatically.
   > overshoot {
-    &.top { @include overshoot(top); }
+    &.top {
+      @include overshoot(top);
+    }
 
-    &.bottom { @include overshoot(bottom); }
+    &.bottom {
+      @include overshoot(bottom);
+    }
 
-    &.left { @include overshoot(left); }
+    &.left {
+      @include overshoot(left);
+    }
 
-    &.right { @include overshoot(right); }
+    &.right {
+      @include overshoot(right);
+    }
   }
 
   // Overflow indication, works similarly to the overshoot, the size if fixed tho.
@@ -3307,13 +3862,23 @@ scrolledwindow {
   }
 
   &.undershoot-start {
-    &:dir(ltr) { @include undershoot(left); }
-    &:dir(rtl) { @include undershoot(right); }
+    &:dir(ltr) {
+      @include undershoot(left);
+    }
+
+    &:dir(rtl) {
+      @include undershoot(right);
+    }
   }
 
   &.undershoot-end {
-    &:dir(ltr) { @include undershoot(right); }
-    &:dir(rtl) { @include undershoot(left); }
+    &:dir(ltr) {
+      @include undershoot(right);
+    }
+
+    &:dir(rtl) {
+      @include undershoot(left);
+    }
   }
 }
 
@@ -3350,7 +3915,8 @@ separator:not(.spacer) {
     border-top-right-radius: $corner-radius;
   }
 
-  &:last-child { // Not use ?
+  &:last-child {
+    // Not use ?
     border-bottom-left-radius: $corner-radius;
     border-bottom-right-radius: $corner-radius;
   }
@@ -3375,8 +3941,13 @@ list {
     color: $text-secondary;
   }
 
-  > row.expander { padding: 0px; }
-  > row.expander .row-header { padding: 2px $space-size; }
+  > row.expander {
+    padding: 0px;
+  }
+
+  > row.expander .row-header {
+    padding: 2px $space-size;
+  }
 
   &.content:not(.conversation-listbox) {
     @extend %circular_list;
@@ -3408,7 +3979,9 @@ list {
   }
 }
 
-list.frame { border-radius: $corner-radius; }
+list.frame {
+  border-radius: $corner-radius;
+}
 
 listview > header {
   @extend .heading;
@@ -3421,6 +3994,39 @@ listview.view {
   color: $text;
   background-color: transparent;
 
+  &.navigation-sidebar {
+    > row {
+      padding: 0 $space-size * 2;
+    }
+  }
+
+  @if $sidebar =='styled' {
+    &.navigation-sidebar {
+      @if $topbar =='dark' and $variant =='light' {
+        margin: 0;
+        background-color: transparent;
+        color: $titlebar-text-secondary;
+      } @else {
+        background-color: $sidebg;
+        color: on($sidebg);
+        margin: 0 0 $menu-radius 0;
+        border-radius: 0 $menu-radius $menu-radius 0;
+      }
+
+      > row {
+        @extend %sidebar-row;
+
+        button {
+          @extend %sidebar-flat-button;
+        }
+      }
+
+      .dim-label {
+        color: on($sidebg, disabled);
+      }
+    }
+  }
+
   popover.menu & {
     padding: 0;
 
@@ -3429,7 +4035,9 @@ listview.view {
       margin-right: 0;
       padding: $space-size $space-size * 2;
 
-      &, &:first-child, &:last-child { border-radius: $corner-radius; }
+      &, &:first-child, &:last-child {
+        border-radius: $corner-radius;
+      }
     }
   }
 }
@@ -3483,8 +4091,13 @@ row {
 
     > .icon,
     > .prefixes {
-      &:dir(ltr) { margin-right: $space-size; }
-      &:dir(rtl) { margin-left: $space-size; }
+      &:dir(ltr) {
+        margin-right: $space-size;
+      }
+
+      &:dir(rtl) {
+        margin-left: $space-size;
+      }
     }
   }
 
@@ -3507,9 +4120,9 @@ row {
 
   &.activatable {
     transition: $transition,
-                background-size $ripple-fade-out-duration $ease-out,
-                background-image $ripple-fade-out-opacity-duration $ease-out,
-                font-weight 0;
+      background-size $ripple-fade-out-duration $ease-out,
+      background-image $ripple-fade-out-opacity-duration $ease-out,
+      font-weight 0;
     outline: none;
     box-shadow: none;
     background-color: transparent;
@@ -3533,9 +4146,9 @@ row {
 
     &:active {
       transition: $transition,
-                  background-size 0ms,
-                  background-image 0ms,
-                  font-weight 0ms;
+        background-size 0ms,
+        background-image 0ms,
+        font-weight 0ms;
       animation: ripple $ripple-fade-in-duration $ease-out forwards;
       background-image: radial-gradient(circle, $overlay-normal 10%, transparent 0%);
       background-size: 0% 0%;
@@ -3558,7 +4171,9 @@ row {
   }
 
   button &.activatable {
-    &:focus, &:hover, &:active { background-color: transparent; }
+    &:focus, &:hover, &:active {
+      background-color: transparent;
+    }
   }
 
   button:checked &.activatable {
@@ -3569,7 +4184,9 @@ row {
     @extend %selected_items;
 
     button image,
-    button label { color: inherit; }
+    button label {
+      color: inherit;
+    }
 
     &:disabled {
       color: $text-disabled;
@@ -3581,7 +4198,7 @@ row {
  * AdwEntryRow and AdwSpinRow *
  ******************************/
 
- row.entry {
+row.entry {
   &:disabled {
     text {
       opacity: 0.35;
@@ -3607,8 +4224,13 @@ row {
       }
 
       > .edit-icon, > .indicator, > .apply-button {
-        &:dir(ltr) { margin-left: $space-size; }
-        &:dir(rtl) { margin-right: $space-size; }
+        &:dir(ltr) {
+          margin-left: $space-size;
+        }
+
+        &:dir(rtl) {
+          margin-right: $space-size;
+        }
       }
 
       > .edit-icon:disabled {
@@ -3621,13 +4243,23 @@ row {
     }
 
     > .prefixes {
-      &:dir(ltr) { margin-left: $space-size; }
-      &:dir(rtl) { margin-right: $space-size; }
+      &:dir(ltr) {
+        margin-left: $space-size;
+      }
+
+      &:dir(rtl) {
+        margin-right: $space-size;
+      }
     }
 
     > .suffixes {
-      &:dir(ltr) { margin-right: $space-size; }
-      &:dir(rtl) { margin-left: $space-size; }
+      &:dir(ltr) {
+        margin-right: $space-size;
+      }
+
+      &:dir(rtl) {
+        margin-left: $space-size;
+      }
     }
   }
 
@@ -3662,6 +4294,7 @@ row.spin {
   }
 
   &:disabled spinbutton {
+
     > button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):last-child,
     > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) {
       &, &:dir(ltr):last-child, &:dir(rtl):first-child {
@@ -3675,14 +4308,15 @@ row.spin {
 
 row.entry,
 row.spin {
+
   &:not(:selected).activatable.focused:hover,
   &:not(:selected).activatable.focused:active {
     background-color: transparent;
   }
 
   @each $e_type, $e_color in (error, $error),
-                             (warning, $warning),
-                             (success, $success) {
+  (warning, $warning),
+  (success, $success) {
     &.#{$e_type} {
       @include entry(normal, $e_color);
       background-color: $overlay-normal;
@@ -3690,7 +4324,9 @@ row.spin {
       &, &:hover, &:focus-within {
         color: $e_color;
 
-        image { color: $e_color; }
+        image {
+          color: $e_color;
+        }
       }
 
       selection {
@@ -3698,14 +4334,18 @@ row.spin {
         background-color: $e_color;
       }
 
-      &:hover { @include entry(hover, $e_color); }
+      &:hover {
+        @include entry(hover, $e_color);
+      }
 
       &:focus-within {
         @include entry(checked, $e_color);
         background-color: $overlay-normal;
       }
 
-      &:disabled { @include entry(disabled, $e_color); }
+      &:disabled {
+        @include entry(disabled, $e_color);
+      }
 
       .dimmed, .dim-label, .subtitle {
         opacity: 1;
@@ -3861,16 +4501,22 @@ row.button {
 
   // Suggested and Destructive Action buttons
   @each $b_type, $b_color in (suggested-action, $suggested),
-                             (destructive-action, $destructive) {
+  (destructive-action, $destructive) {
     &.#{$b_type} {
       background-color: $b_color;
       color: on($b_color);
 
-      &:disabled { @include button(disabled); }
+      &:disabled {
+        @include button(disabled);
+      }
 
-      &:checked { background-color: mix(on($b_color), $b_color, percentage(0.3)); }
+      &:checked {
+        background-color: mix(on($b_color), $b_color, percentage(0.3));
+      }
 
-      &:hover, &:checked:hover, &:focus { box-shadow: none; }
+      &:hover, &:checked:hover, &:focus {
+        box-shadow: none;
+      }
     }
   }
 
@@ -3894,6 +4540,7 @@ list.boxed-list {
   @extend %circular_list;
 
   > row {
+
     // Regular rows and expander header rows background
     &, &.expander row.header {
       @extend %boxed_list_row;
@@ -3913,6 +4560,7 @@ list.boxed-list {
 
     // Rounded bottom
     &:last-child {
+
       &,
       &.expander:not(:checked),
       &.expander:not(:checked) row.header,
@@ -3940,6 +4588,7 @@ list.boxed-list-separate {
     }
 
     &.entry, &.spin {
+
       &:not(:selected).activatable.focused:hover,
       &:not(:selected).activatable.focused:active {
         background-color: $base;
@@ -3986,10 +4635,13 @@ columnview {
   }
 }
 
-.rich-list { /* rich lists usually containing other widgets than just labels/text */
+.rich-list {
+
+  /* rich lists usually containing other widgets than just labels/text */
   & > row {
     padding: $space-size * 1.5 $space-size * 2;
-    min-height: 32px; /* should be tall even when only containing a label */
+    min-height: 32px;
+    /* should be tall even when only containing a label */
 
     & > box {
       border-spacing: $space-size * 2;
@@ -4015,11 +4667,15 @@ columnview {
   button {
     @extend %button-flat;
 
-    &.text-button:not(:disabled) { color: $primary; }
+    &.text-button:not(:disabled) {
+      color: $primary;
+    }
   }
 
   &.frame,
-  border { border-style: none; }
+  border {
+    border-style: none;
+  }
 }
 
 
@@ -4033,13 +4689,21 @@ expander {
   color: $text-secondary;
   -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
 
-  &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+  &:dir(rtl) {
+    -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl');
+  }
 
-  &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+  &:checked {
+    -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+  }
 
-  &:hover, &:active { color: $text; }
+  &:hover, &:active {
+    color: $text;
+  }
 
-  &:disabled { color: $text-secondary-disabled; }
+  &:disabled {
+    color: $text-secondary-disabled;
+  }
 }
 
 expander-widget {
@@ -4056,6 +4720,7 @@ expander-widget {
 placessidebar,
 stackswitcher,
 expander-widget {
+
   &:not(decoration):not(window):drop(active):focus,
   &:not(decoration):not(window):drop(active) {
     box-shadow: none;
@@ -4072,7 +4737,9 @@ calendar {
   border-radius: $corner-radius;
   color: $text;
 
-  &:disabled { color: $text-disabled; }
+  &:disabled {
+    color: $text-disabled;
+  }
 
   &:selected {
     @extend %selected_items;
@@ -4132,8 +4799,12 @@ calendar {
 /***********
  * Dialogs *
  ***********/
-window.dialog.message { // Message Dialog styling
-  &.background { background-color: $surface; }
+window.dialog.message {
+
+  // Message Dialog styling
+  &.background {
+    background-color: $surface;
+  }
 
   box.dialog-vbox.vertical {
     border-spacing: 10px;
@@ -4145,7 +4816,7 @@ window.dialog.message { // Message Dialog styling
     background-color: $surface;
     color: $text;
 
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       box-shadow: inset 0 1px highlight($surface);
     }
 
@@ -4155,7 +4826,9 @@ window.dialog.message { // Message Dialog styling
     }
   }
 
-  &.csd { // rounded bottom border styling for csd version
+  &.csd {
+
+    // rounded bottom border styling for csd version
     .dialog-action-area {
       margin-top: -$space-size;
       padding: $space-size;
@@ -4163,15 +4836,25 @@ window.dialog.message { // Message Dialog styling
       > button {
         @extend %button-flat;
 
-        &, &:first-child, &:last-child { border-radius: $corner-radius; }
+        &, &:first-child, &:last-child {
+          border-radius: $corner-radius;
+        }
 
-        &:not(:last-child) { margin-right: $space-size; }
+        &:not(:last-child) {
+          margin-right: $space-size;
+        }
 
-        &:not(:disabled) { color: $primary; }
+        &:not(:disabled) {
+          color: $primary;
+        }
 
-        &.suggested-action:not(:disabled) { color: $suggested; }
+        &.suggested-action:not(:disabled) {
+          color: $suggested;
+        }
 
-        &.destructive-action:not(:disabled) { color: $destructive; }
+        &.destructive-action:not(:disabled) {
+          color: $destructive;
+        }
       }
     }
   }
@@ -4185,15 +4868,25 @@ window.background.messagedialog {
     > button {
       @extend %button-flat;
 
-      &, &:first-child, &:last-child { border-radius: $corner-radius; }
+      &, &:first-child, &:last-child {
+        border-radius: $corner-radius;
+      }
 
-      &:not(:last-child) { margin-right: $space-size; }
+      &:not(:last-child) {
+        margin-right: $space-size;
+      }
 
-      &:not(:disabled) { color: $primary; }
+      &:not(:disabled) {
+        color: $primary;
+      }
 
-      &.suggested-action:not(:disabled) { color: $suggested; }
+      &.suggested-action:not(:disabled) {
+        color: $suggested;
+      }
 
-      &.destructive-action:not(:disabled) { color: $destructive; }
+      &.destructive-action:not(:disabled) {
+        color: $destructive;
+      }
     }
 
     > separator {
@@ -4215,20 +4908,25 @@ window.aboutdialog {
 }
 
 filechooser {
-  .dialog-action-box { border-top: 1px solid $divider; }
+  .dialog-action-box {
+    border-top: 1px solid $divider;
+  }
 
   #pathbarbox {
     border-bottom: 1px solid $divider;
     background-color: $background;
 
-    > stack > box > button { // The new folder button
+    > stack > box > button {
+      // The new folder button
       @extend %button-flat;
       @extend %circular-button;
     }
   }
 
   stack.view {
-    frame > border { border: none; }
+    frame > border {
+      border: none;
+    }
   }
 }
 
@@ -4249,6 +4947,7 @@ filechooserbutton:drop(active) {
   // background-color: $base;
 
   &:not(separator) {
+
     @at-root %sidebar_left,
     &:dir(ltr),
     &.left,
@@ -4268,6 +4967,7 @@ filechooserbutton:drop(active) {
   separator + &,
   separator + box > & {
     &:not(separator) {
+
       &:dir(ltr),
       &.left,
       &.left:dir(rtl) {
@@ -4282,14 +4982,23 @@ filechooserbutton:drop(active) {
   }
 
   listview.view,
-  list { background-color: transparent; }
+  list {
+    background-color: transparent;
+  }
 
-  paned & { &.left, &.right, &.left:dir(rtl), &:dir(rtl), &:dir(ltr), & { border-style: none; }}
+  paned & {
+    &.left, &.right, &.left:dir(rtl), &:dir(rtl), &:dir(ltr), & {
+      border-style: none;
+    }
+  }
 }
 
 stacksidebar {
+
   + separator.vertical,
-  separator.horizontal { @extend %hide_separators; }
+  separator.horizontal {
+    @extend %hide_separators;
+  }
 
   leaflet.unfolded > box > &.sidebar,
   .sidebar-pane &.sidebar {
@@ -4316,7 +5025,9 @@ stacksidebar {
       font-weight: 500;
     }
 
-    &.needs-attention > label { @extend %needs-attention; }
+    &.needs-attention > label {
+      @extend %needs-attention;
+    }
   }
 }
 
@@ -4345,12 +5056,14 @@ separator.sidebar {
   }
 
   > row {
-    min-height: $small-size;
-    padding: $space-size / 2;
+    min-height: $small-size + $space-size;
+    padding: 0 $space-size * 1.5;
     border-radius: $corner-radius;
     margin: 0;
 
-    + row { margin-top: $space-size / 2; }
+    + row {
+      margin-top: $space-size / 2;
+    }
 
     &:hover,
     &:focus-visible:focus-within {
@@ -4371,11 +5084,16 @@ separator.sidebar {
       &:focus-visible:focus-within {
         outline: none;
         background-color: $overlay-focus;
-        &:hover { background-color: $overlay-focus-hover; }
+
+        &:hover {
+          background-color: $overlay-focus-hover;
+        }
       }
     }
 
-    &:disabled { color: $text-disabled; }
+    &:disabled {
+      color: $text-disabled;
+    }
   }
 
   > separator {
@@ -4390,28 +5108,42 @@ separator.sidebar {
 placessidebar {
   background-color: $background;
 
-  > viewport.frame { border-style: none; }
+  > viewport.frame {
+    border-style: none;
+  }
 
   .navigation-sidebar > row {
-    padding: $space-size / 2 $space-size;
+    padding: 0 $space-size;
 
     // Using margins/padding directly in the SidebarRow
     // will make the animation of the new bookmark row jump
-    > revealer { padding: $space-size $space-size * 1.5; }
+    > revealer {
+      padding: $space-size;
+    }
 
     image.sidebar-icon {
       transition: color $duration $ease-out;
       color: inherit;
 
-      &:dir(ltr) { padding-right: 8px; }
-      &:dir(rtl) { padding-left: 8px; }
+      &:dir(ltr) {
+        padding-right: 8px;
+      }
+
+      &:dir(rtl) {
+        padding-left: 8px;
+      }
     }
 
     label.sidebar-label {
       color: inherit;
 
-      &:dir(ltr) { padding-right: 2px; }
-      &:dir(rtl) { padding-left: 2px; }
+      &:dir(ltr) {
+        padding-right: 2px;
+      }
+
+      &:dir(rtl) {
+        padding-left: 2px;
+      }
     }
 
     button.sidebar-button {
@@ -4419,7 +5151,9 @@ placessidebar {
       @extend %small-button;
     }
 
-    &.sidebar-placeholder-row { background-color: $overlay-hover; }
+    &.sidebar-placeholder-row {
+      background-color: $overlay-hover;
+    }
 
     &.sidebar-new-bookmark-row {
       color: $primary;
@@ -4429,12 +5163,14 @@ placessidebar {
       font-weight: 500;
       @extend %selected_items_primary;
 
-      button.sidebar-button { @extend %sidebar-flat-button; }
+      button.sidebar-button {
+        @extend %sidebar-flat-button;
+      }
     }
 
     &:drop(active) {
       transition: $transition,
-                  background-color 0ms;
+        background-color 0ms;
       background-color: $overlay-hover;
     }
   }
@@ -4540,16 +5276,25 @@ paned {
     outline-color: on($sidebg);
   }
 
-  &:drop(active) { color: on($sidebg); }
+  &:drop(active) {
+    color: on($sidebg);
+  }
 
-  &:disabled { color: on($sidebg, disabled); }
+  &:disabled {
+    color: on($sidebg, disabled);
+  }
 
-  image { // icons inside the entry
+  image {
+    // icons inside the entry
     color: on($sidebg, secondary);
 
-    &:hover, &:active { color: on($sidebg); }
+    &:hover, &:active {
+      color: on($sidebg);
+    }
 
-    &:disabled { color: on($sidebg, secondary-disabled); }
+    &:disabled {
+      color: on($sidebg, secondary-disabled);
+    }
   }
 }
 
@@ -4562,36 +5307,56 @@ paned {
   }
 
   &, &.flat {
-    &:focus { @include button(flat-focus); }
+    &:focus {
+      @include button(flat-focus);
+    }
 
-    &:hover { @include button(flat-hover); }
+    &:hover {
+      @include button(flat-hover);
+    }
 
-    &:active { @include button(flat-active); }
+    &:active {
+      @include button(flat-active);
+    }
 
-    &:disabled { @include button(flat-disabled); }
+    &:disabled {
+      @include button(flat-disabled);
+    }
 
-    &:checked, &:checked:hover { @include button(flat-checked); }
+    &:checked, &:checked:hover {
+      @include button(flat-checked);
+    }
 
-    &:checked:disabled { @include button(flat-checked-disabled); }
+    &:checked:disabled {
+      @include button(flat-checked-disabled);
+    }
   }
 
-  &:hover, &:active, &:focus { color: on($sidebg); }
+  &:hover, &:active, &:focus {
+    color: on($sidebg);
+  }
 
   &:checked, &:checked:hover {
     background-color: on($sidebg);
     color: $sidebg;
 
-    &:disabled { color: rgba($sidebg, 0.5); }
+    &:disabled {
+      color: rgba($sidebg, 0.5);
+    }
   }
 
-  &:disabled { color: on($sidebg, disabled); }
+  &:disabled {
+    color: on($sidebg, disabled);
+  }
 }
 
 %sidebar-flat-button {
   background-color: transparent;
   color: on($sidebg);
 
-  &:focus, &:hover, &:active, &:checked { color: on($sidebg); }
+  &:focus, &:hover, &:active, &:checked {
+    color: on($sidebg);
+  }
 
   &:hover {
     background-color: $overlay-hover;
@@ -4605,7 +5370,9 @@ paned {
     background-color: $overlay-checked;
   }
 
-  &:disabled { color: on($sidebg, disabled); }
+  &:disabled {
+    color: on($sidebg, disabled);
+  }
 }
 
 %sidebar-row {
@@ -4619,7 +5386,9 @@ paned {
     background-color: $base;
     color: $sidebg;
 
-    &:hover { background-color: mix($sidebg, $base, 10%); }
+    &:hover {
+      background-color: mix($sidebg, $base, 10%);
+    }
   }
 
   &:disabled {
@@ -4628,11 +5397,13 @@ paned {
 }
 
 .sidebar-pane {
-  @if $variant == 'light' and $topbar == 'dark' {
-    background-color: if($sidebar == 'normal', $base-alt, $titlebar);
-    color: if($sidebar == 'normal', $text, $titlebar-text);
-  } @else {
-    background-color: if($sidebar == 'normal', $base-alt, $background);
+  @if $variant =='light' and $topbar =='dark' {
+    background-color: if($sidebar =='normal', $base-alt, $titlebar);
+    color: if($sidebar =='normal', $text, $titlebar-text);
+  }
+
+  @else {
+    background-color: if($sidebar =='normal', $base-alt, $background);
     color: $text;
   }
 
@@ -4647,48 +5418,67 @@ paned {
   }
 
   headerbar {
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       background-color: transparent;
       border: none;
       border-top-right-radius: 0;
-    } @else {
+    }
+
+    @else {
       background-color: transparent;
       box-shadow: none;
       border: none;
     }
   }
 
-  @if $variant == 'light' and $topbar == 'dark' and $sidebar == 'normal' {
+  @if $variant =='light' and $topbar =='dark' and $sidebar =='normal' {
     headerbar {
       color: $text-secondary;
 
-      &:backdrop { color: $text-secondary-disabled; }
+      &:backdrop {
+        color: $text-secondary-disabled;
+      }
 
       button:not(.suggested-action):not(.destructive-action) {
         @include button(flat-normal);
 
-        &:focus { @include button(focus); }
+        &:focus {
+          @include button(focus);
+        }
 
-        &:hover { @include button(hover); }
+        &:hover {
+          @include button(hover);
+        }
 
-        &:active { @include button(active); }
+        &:active {
+          @include button(active);
+        }
 
-        &:disabled { @include button(flat-disabled); }
+        &:disabled {
+          @include button(flat-disabled);
+        }
 
-        &:checked { @include button(checked); }
+        &:checked {
+          @include button(checked);
+        }
 
-        &:checked:hover { @include button(checked-hover); }
+        &:checked:hover {
+          @include button(checked-hover);
+        }
 
-        &:checked:disabled { @include button(checked-disabled); }
+        &:checked:disabled {
+          @include button(checked-disabled);
+        }
       }
     }
   }
 
-  @if $sidebar == 'styled' {
+  @if $sidebar =='styled' {
+
     toolbarview > scrolledwindow,
     toolbarview > placessidebar > scrolledwindow,
     toolbarview > stacksidebar.sidebar > scrolledwindow {
-      @if $topbar == 'dark' and $variant == 'light' {
+      @if $topbar =='dark' and $variant =='light' {
         margin: 0;
         background-color: transparent;
         color: $titlebar-text-secondary;
@@ -4704,23 +5494,37 @@ paned {
 
         > row {
           @extend %sidebar-row;
-    
-          button { @extend %sidebar-flat-button; }
+
+          button {
+            @extend %sidebar-flat-button;
+          }
         }
 
-        .dim-label { color: on($sidebg, disabled); }
+        .dim-label {
+          color: on($sidebg, disabled);
+        }
 
-        > separator { background: none; }
+        > separator {
+          background: none;
+        }
       }
 
       > overshoot {
-        &.top { @include overshoot(top, $c: on($sidebg, disabled)); }
-    
-        &.bottom { @include overshoot(bottom, $c: on($sidebg, disabled)); }
-    
-        &.left { @include overshoot(left, $c: on($sidebg, disabled)); }
-    
-        &.right { @include overshoot(right, $c: on($sidebg, disabled)); }
+        &.top {
+          @include overshoot(top, $c: on($sidebg, disabled));
+        }
+
+        &.bottom {
+          @include overshoot(bottom, $c: on($sidebg, disabled));
+        }
+
+        &.left {
+          @include overshoot(left, $c: on($sidebg, disabled));
+        }
+
+        &.right {
+          @include overshoot(right, $c: on($sidebg, disabled));
+        }
       }
 
       scrollbar {
@@ -4731,12 +5535,18 @@ paned {
 
           > slider {
             background-color: on($sidebg, disabled);
-      
-            &:hover { background-color: on($sidebg, secondary); }
-      
-            &:active { background-color: on($sidebg); }
-      
-            &:disabled { background-color: on($sidebg, secondary-disabled); }
+
+            &:hover {
+              background-color: on($sidebg, secondary);
+            }
+
+            &:active {
+              background-color: on($sidebg);
+            }
+
+            &:disabled {
+              background-color: on($sidebg, secondary-disabled);
+            }
           }
         }
 
@@ -4757,12 +5567,15 @@ paned {
 
     placessidebar {
       .navigation-sidebar > row {
+
         &,
         label.sidebar-label,
         image.sidebar-icon {
           color: on($sidebg, secondary);
 
-          &:disabled { color: on($sidebg, secondary-disabled); }
+          &:disabled {
+            color: on($sidebg, secondary-disabled);
+          }
         }
 
         button.sidebar-button {
@@ -4774,23 +5587,31 @@ paned {
 
           &,
           label.sidebar-label,
-          image.sidebar-icon { color: $sidebg; }
+          image.sidebar-icon {
+            color: $sidebg;
+          }
 
-          button.sidebar-button { @extend %button-flat-simple; }
+          button.sidebar-button {
+            @extend %button-flat-simple;
+          }
 
-          &:hover { background-color: mix($sidebg, $base, 10%); }
+          &:hover {
+            background-color: mix($sidebg, $base, 10%);
+          }
         }
 
         &.sidebar-new-bookmark-row {
           color: on($sidebg, secondary);
 
-          image.sidebar-icon { color: on($sidebg, secondary); }
+          image.sidebar-icon {
+            color: on($sidebg, secondary);
+          }
         }
       }
     }
   }
 
-  @if $variant == 'light' and $topbar == 'dark' {
+  @if $variant =='light' and $topbar =='dark' {
     entry {
       @extend %sidebar-entry;
     }
@@ -4800,26 +5621,44 @@ paned {
 %content_headerbar_style {
   color: $text-secondary;
 
-  &:backdrop { color: $text-secondary-disabled; }
+  &:backdrop {
+    color: $text-secondary-disabled;
+  }
 
-  .dim-label { color: $text-disabled; }
+  .dim-label {
+    color: $text-disabled;
+  }
 
   button:not(.suggested-action):not(.destructive-action) {
     @include button(flat-normal);
 
-    &:focus { @include button(focus); }
+    &:focus {
+      @include button(focus);
+    }
 
-    &:hover { @include button(hover); }
+    &:hover {
+      @include button(hover);
+    }
 
-    &:active { @include button(active); }
+    &:active {
+      @include button(active);
+    }
 
-    &:disabled { @include button(flat-disabled); }
+    &:disabled {
+      @include button(flat-disabled);
+    }
 
-    &:checked { @include button(checked); }
+    &:checked {
+      @include button(checked);
+    }
 
-    &:checked:hover { @include button(checked-hover); }
+    &:checked:hover {
+      @include button(checked-hover);
+    }
 
-    &:checked:disabled { @include button(checked-disabled); }
+    &:checked:disabled {
+      @include button(checked-disabled);
+    }
   }
 
   entry {
@@ -4830,7 +5669,9 @@ paned {
       color: $text;
       outline-color: $primary;
 
-      image { color: $text; }
+      image {
+        color: $text;
+      }
     }
 
     &:disabled {
@@ -4840,29 +5681,41 @@ paned {
 
     image {
       color: $text-secondary;
-  
-      &:hover, &:active { color: $text; }
-  
-      &:disabled { color: $text-disabled; }
+
+      &:hover, &:active {
+        color: $text;
+      }
+
+      &:disabled {
+        color: $text-disabled;
+      }
     }
   }
 }
 
 .content-pane {
-  @if $variant == 'light' and $topbar == 'dark' {
-    @if $sidebar == 'styled' {
-      window:not(.nautilus-window) & headerbar { @extend %content_headerbar_style; }
-    } @else {
-      headerbar { @extend %content_headerbar_style; }
+  @if $variant =='light' and $topbar =='dark' {
+    @if $sidebar =='styled' {
+      window:not(.nautilus-window) & headerbar {
+        @extend %content_headerbar_style;
+      }
+    }
+
+    @else {
+      headerbar {
+        @extend %content_headerbar_style;
+      }
     }
   }
 
   headerbar {
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       background-color: transparent;
       border: none;
       border-top-left-radius: 0;
-    } @else {
+    }
+
+    @else {
       background-color: transparent;
       box-shadow: none;
       border: none;
@@ -4899,9 +5752,11 @@ paned {
     &, banner > revealer > widget {
       border: none;
 
-      @if $sidebar == 'normal' {
+      @if $sidebar =='normal' {
         box-shadow: inset -1px 0 $border;
-      } @else {
+      }
+
+      @else {
         box-shadow: none;
       }
     }
@@ -4911,68 +5766,92 @@ paned {
     &, banner > revealer > widget {
       border: none;
 
-      @if $sidebar == 'normal' {
+      @if $sidebar =='normal' {
         box-shadow: inset 1px 0 $border;
-      } @else {
+      }
+
+      @else {
         box-shadow: none;
       }
     }
   }
 
-  @if $sidebar == 'styled' {
+  @if $sidebar =='styled' {
     toolbarview.undershoot-top scrolledwindow {
       @include undershoot(top, $c: $side-frame, $style: 'round');
     }
-  
+
     toolbarview.undershoot-bottom scrolledwindow {
       @include undershoot(bottom, $c: $side-frame, $style: 'round');
     }
-  
+
     scrolledwindow {
       &.undershoot-top {
         @include undershoot(top, $c: $side-frame, $style: 'round');
       }
-  
+
       &.undershoot-bottom {
         @include undershoot(bottom, $c: $side-frame, $style: 'round');
       }
-  
+
       &.undershoot-start {
-        &:dir(ltr) { @include undershoot(left, $c: $side-frame, $style: 'round'); }
-        &:dir(rtl) { @include undershoot(right, $c: $side-frame, $style: 'round'); }
+        &:dir(ltr) {
+          @include undershoot(left, $c: $side-frame, $style: 'round');
+        }
+
+        &:dir(rtl) {
+          @include undershoot(right, $c: $side-frame, $style: 'round');
+        }
       }
-  
+
       &.undershoot-end {
-        &:dir(ltr) { @include undershoot(right, $c: $side-frame, $style: 'round'); }
-        &:dir(rtl) { @include undershoot(left, $c: $side-frame, $style: 'round'); }
+        &:dir(ltr) {
+          @include undershoot(right, $c: $side-frame, $style: 'round');
+        }
+
+        &:dir(rtl) {
+          @include undershoot(left, $c: $side-frame, $style: 'round');
+        }
       }
     }
-  } @else {
+  }
+
+  @else {
     toolbarview.undershoot-top scrolledwindow {
       @include undershoot(top);
     }
-  
+
     toolbarview.undershoot-bottom scrolledwindow {
       @include undershoot(bottom);
     }
-  
+
     scrolledwindow {
       &.undershoot-top {
         @include undershoot(top);
       }
-  
+
       &.undershoot-bottom {
         @include undershoot(bottom)
       }
-  
+
       &.undershoot-start {
-        &:dir(ltr) { @include undershoot(left); }
-        &:dir(rtl) { @include undershoot(right); }
+        &:dir(ltr) {
+          @include undershoot(left);
+        }
+
+        &:dir(rtl) {
+          @include undershoot(right);
+        }
       }
-  
+
       &.undershoot-end {
-        &:dir(ltr) { @include undershoot(right); }
-        &:dir(rtl) { @include undershoot(left); }
+        &:dir(ltr) {
+          @include undershoot(right);
+        }
+
+        &:dir(rtl) {
+          @include undershoot(left);
+        }
       }
     }
   }
@@ -4982,6 +5861,7 @@ paned {
 .content-pane,
 .content-pane .sidebar-pane,
 .sidebar-pane .content-pane {
+
   flap,
   leaflet,
   navigation-view,
@@ -5009,13 +5889,23 @@ paned {
     }
 
     &.undershoot-start {
-      &:dir(ltr) { @include undershoot(left); }
-      &:dir(rtl) { @include undershoot(right); }
+      &:dir(ltr) {
+        @include undershoot(left);
+      }
+
+      &:dir(rtl) {
+        @include undershoot(right);
+      }
     }
 
     &.undershoot-end {
-      &:dir(ltr) { @include undershoot(right); }
-      &:dir(rtl) { @include undershoot(left); }
+      &:dir(ltr) {
+        @include undershoot(right);
+      }
+
+      &:dir(rtl) {
+        @include undershoot(left);
+      }
     }
   }
 }
@@ -5031,9 +5921,11 @@ overlay-split-view {
 /******************
  * AdwToolbarView *
  ******************/
- toolbarview {
+toolbarview {
+
   > .top-bar,
   > .bottom-bar {
+
     searchbar,
     actionbar {
       > revealer > box {
@@ -5043,7 +5935,7 @@ overlay-split-view {
       }
     }
 
-    .toolbar  {
+    .toolbar {
       background-color: transparent;
     }
 
@@ -5101,8 +5993,13 @@ overlay-split-view {
     }
   }
 
-  &.undershoot-top    scrolledwindow { @include undershoot(top); }
-  &.undershoot-bottom scrolledwindow { @include undershoot(bottom); }
+  &.undershoot-top scrolledwindow {
+    @include undershoot(top);
+  }
+
+  &.undershoot-bottom scrolledwindow {
+    @include undershoot(bottom);
+  }
 }
 
 /************
@@ -5134,37 +6031,46 @@ infobar {
   }
 
   &.info {
+
     & > revealer > box,
     &:hover > revealer > box,
     &:backdrop > revealer > box {
       // background-color: $base;
 
       button {
-        &, &.text-button:not(:disabled) { color: $primary; }
+        &, &.text-button:not(:disabled) {
+          color: $primary;
+        }
       }
     }
   }
 
   &.action,
   &.question {
+
     & > revealer > box,
     &:backdrop > revealer > box {
       background-color: $primary;
       color: on($primary);
 
       button {
-        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) { color: on($primary); }
+        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) {
+          color: on($primary);
+        }
       }
 
-      *:link { color: on($primary); }
+      *:link {
+        color: on($primary);
+      }
     }
 
     &:hover > revealer > box {
-      background-color: if($variant == 'light', lighten($primary, 5%), darken($primary, 5%));
+      background-color: if($variant =='light', lighten($primary, 5%), darken($primary, 5%));
     }
   }
 
   &.warning {
+
     & > revealer > box,
     &:backdrop > revealer > box {
       background-color: $warning;
@@ -5173,32 +6079,41 @@ infobar {
       button {
         @extend %button-on-dark;
 
-        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) { color: on($warning); }
+        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) {
+          color: on($warning);
+        }
       }
 
-      *:link { color: on($warning); }
+      *:link {
+        color: on($warning);
+      }
     }
 
     &:hover > revealer > box {
-      background-color: if($variant == 'light', lighten($warning, 5%), darken($warning, 5%));
+      background-color: if($variant =='light', lighten($warning, 5%), darken($warning, 5%));
     }
   }
 
   &.error {
+
     & > revealer > box,
     &:backdrop > revealer > box {
       background-color: $error;
       color: on($error);
 
       button {
-        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) { color: on($error); }
+        &, &:hover, &:focus, &:active, &:checked, &.text-button:not(:disabled) {
+          color: on($error);
+        }
       }
 
-      *:link { color: on($error); }
+      *:link {
+        color: on($error);
+      }
     }
 
     &:hover > revealer > box {
-      background-color: if($variant == 'light', lighten($error, 5%), darken($error, 5%));
+      background-color: if($variant =='light', lighten($error, 5%), darken($error, 5%));
     }
   }
 }
@@ -5284,15 +6199,21 @@ colorswatch {
     }
   }
 
-  &.dark { color: on(dark); }
+  &.dark {
+    color: on(dark);
+  }
 
-  &.light { color: on(light); }
+  &.light {
+    color: on(light);
+  }
 
   &#add-color-button {
     border-radius: $menu-radius $menu-radius 0 0;
     color: $text;
 
-    &:only-child { border-radius: $menu-radius; }
+    &:only-child {
+      border-radius: $menu-radius;
+    }
 
     overlay {
       background-color: $surface;
@@ -5302,13 +6223,17 @@ colorswatch {
   &:disabled {
     opacity: 0.5;
 
-    overlay { box-shadow: none; }
+    overlay {
+      box-shadow: none;
+    }
   }
 
   &#editor-color-sample {
     border-radius: $menu-radius;
 
-    overlay { border-radius: $menu-radius; }
+    overlay {
+      border-radius: $menu-radius;
+    }
   }
 }
 
@@ -5319,7 +6244,9 @@ colorchooser .popover.osd {
   box-shadow: $shadow-z4, inset 0 1px highlight($surface);
   background-color: $surface;
 
-  &:backdrop { box-shadow: $shadow-z2, inset 0 1px highlight($surface); }
+  &:backdrop {
+    box-shadow: $shadow-z2, inset 0 1px highlight($surface);
+  }
 }
 
 
@@ -5332,7 +6259,9 @@ colorchooser .popover.osd {
 
   // &:hover { -gtk-icon-effect: highlight; }
 
-  rubberband, .rubberband { @extend rubberband; }
+  rubberband, .rubberband {
+    @extend rubberband;
+  }
 }
 
 // .scale-popup {
@@ -5340,7 +6269,7 @@ colorchooser .popover.osd {
 
 //   .osd & button.flat { // FIXME: quick hack, redo properly
 //   }
-  
+
 //   button { // +/- buttons on GtkVolumeButton popup
 //   }
 // }
@@ -5359,34 +6288,39 @@ window {
     margin: 0;
     padding: 0;
 
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       box-shadow: $shadow-z16,
-                  0 1px 2px transparent,
-                  0 3px 4px transparent,
-                  0 1px 6px transparent;
-    } @else {
+        0 1px 2px transparent,
+        0 3px 4px transparent,
+        0 1px 6px transparent;
+    }
+
+    @else {
       box-shadow: $shadow-z16, 0 0 0 2px $primary,
-                  0 1px 2px transparent,
-                  0 3px 4px transparent,
-                  0 1px 6px transparent;
+        0 1px 2px transparent,
+        0 3px 4px transparent,
+        0 1px 6px transparent;
     }
 
     &:backdrop {
       transition: none;
+
       // the transparent shadow here is to enforce that the shadow extents don't
       // change when we go to backdrop, to prevent jumping windows.
       // The biggest shadow should be in the same order then in the active state
       // or the jumping will happen during the transition.
-      @if $rimless == 'true' {
+      @if $rimless =='true' {
         box-shadow: $shadow-z4,
-                    0 3px 8px transparent,
-                    0 10px 18px transparent,
-                    0 8px 24px transparent;
-      } @else {
+          0 3px 8px transparent,
+          0 10px 18px transparent,
+          0 8px 24px transparent;
+      }
+
+      @else {
         box-shadow: $shadow-z4, 0 0 0 2px $primary,
-                    0 3px 8px transparent,
-                    0 10px 18px transparent,
-                    0 8px 24px transparent;
+          0 3px 8px transparent,
+          0 10px 18px transparent,
+          0 8px 24px transparent;
       }
     }
 
@@ -5396,8 +6330,10 @@ window {
     &.tiled-top,
     &.tiled-right,
     &.tiled-bottom,
-    &.tiled-left { border-radius: 0; }
-  
+    &.tiled-left {
+      border-radius: 0;
+    }
+
     &.maximized,
     &.fullscreen {
       box-shadow: none;
@@ -5419,21 +6355,28 @@ window {
     border-radius: 0;
     background-color: $titlebar;
 
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       border: 1px solid $solid-border;
-    } @else {
+    }
+
+    @else {
       border: 2px solid $primary;
     }
 
-    &:backdrop { background-color: $titlebar-backdrop; }
+    &:backdrop {
+      background-color: $titlebar-backdrop;
+    }
   }
 
   // server-side decorations as used by mutter
   &.ssd {
+
     // just doing borders, wm draws actual shadows
-    @if $rimless == 'true' {
+    @if $rimless =='true' {
       box-shadow: none
-    } @else {
+    }
+
+    @else {
       box-shadow: 0 0 0 2px $primary;
     }
   }
@@ -5446,6 +6389,7 @@ windowcontrols {
   margin: 0;
 
   &:not(.empty) {
+
     &.start:dir(ltr),
     &.end:dir(rtl) {
       padding-left: $space-size / 2;
@@ -5464,9 +6408,13 @@ windowcontrols {
     padding: 0;
     margin: 0 $space-size / 2;
 
-    image { background: none; }
+    image {
+      background: none;
+    }
 
-    &.close { // Window Close button
+    &.close {
+
+      // Window Close button
       &:hover {
         background-color: $titlebar-primary;
         color: $titlebar;
@@ -5497,7 +6445,9 @@ windowcontrols {
   background-color: $primary;
 }
 
-.monospace { font-family: monospace; }
+.monospace {
+  font-family: monospace;
+}
 
 
 /**********************
@@ -5543,7 +6493,8 @@ shortcut > .keycap {
   font-size: smaller;
 }
 
-:not(decoration):not(window):drop(active) { // FIXME needs to be done widget by widget, this wildcard should really die
+:not(decoration):not(window):drop(active) {
+  // FIXME needs to be done widget by widget, this wildcard should really die
   caret-color: $primary;
 }
 
@@ -5551,10 +6502,12 @@ stackswitcher {
   min-height: 0;
   border-radius: $circular-radius;
 
-  @if $rimless == 'true' {
+  @if $rimless =='true' {
     padding: 0;
     background-color: $overlay-normal;
-  } @else {
+  }
+
+  @else {
     padding: 2px;
     margin: $space-size 0;
     background-color: transparent;
@@ -5572,21 +6525,28 @@ stackswitcher {
       border-radius: $circular-radius;
     }
 
-    @if $rimless == 'false' {
+    @if $rimless =='false' {
       min-height: 20px;
       padding: ($medium-size - 28px) / 2 ($medium-size - 16px) / 2;
     }
 
-    &.text-button { min-width: 100px; }
+    &.text-button {
+      min-width: 100px;
+    }
   }
 
-  button.text-button { min-width: 100px; } // FIXME aggregate with buttons
+  button.text-button {
+    min-width: 100px;
+  }
+
+  // FIXME aggregate with buttons
 
   &.circular {
     border-spacing: $space-size * 2;
 
     button.circular,
-    button.text-button.circular { // FIXME aggregate with buttons
+    button.text-button.circular {
+      // FIXME aggregate with buttons
       min-width: $medium-size;
       min-height: $medium-size;
       padding: 0;
